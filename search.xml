@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>github加hexo搭建个人博客（一）</title>
+      <link href="/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+      <url>/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>由于本人刚准备转码，希望可以提高个人技术，因此搭建个人博客，来记录学习过程，遇到的问题以及解决问题的方法。希望这个搭建的方法可以帮助到大家。</p><p><a href="https://hexo.io/" title="Hexo官网">Hexo</a> 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他标记语言）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。我们可以利用大型同性交友网站<a href="https://github.com/" title="github官网">github</a>和 hexo 免费搭建个人博客，白嫖是第一声力！</p><h1 id="github账号注册和git软件的下载"><a href="#github账号注册和git软件的下载" class="headerlink" title="github账号注册和git软件的下载"></a>github账号注册和git软件的下载</h1><p>进入<a href="https://github.com/" title="github官网">github</a>，点击右上角注册<br><img src="1.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 个人博客搭建 </category>
+          
+          <category> 技术学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> github </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>test</title>
       <link href="/2024/03/18/test/"/>
       <url>/2024/03/18/test/</url>
