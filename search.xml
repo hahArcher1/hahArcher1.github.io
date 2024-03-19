@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>github加hexo搭建个人博客（一）</title>
-      <link href="/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-      <url>/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+      <title>github加hexo搭建个人博客（二）</title>
+      <link href="/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+      <url>/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>由于本人刚准备转码，希望可以提高个人技术，因此搭建个人博客，来记录学习过程，遇到的问题以及解决问题的方法。希望这个搭建的方法可以帮助到大家。</p><p><a href="https://hexo.io/" title="Hexo官网">Hexo</a> 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他标记语言）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。我们可以利用大型同性交友网站<a href="https://github.com/" title="github官网">github</a>和 hexo 免费搭建个人博客，白嫖是第一声力！</p><h1 id="github账号注册和git软件的下载"><a href="#github账号注册和git软件的下载" class="headerlink" title="github账号注册和git软件的下载"></a>github账号注册和git软件的下载</h1><p>进入<a href="https://github.com/" title="github官网">github</a>，点击右上角注册<br><img src="1.png"></p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       
       
       <categories>
@@ -33,59 +33,29 @@
     
     
     <entry>
-      <title>test</title>
-      <link href="/2024/03/18/test/"/>
-      <url>/2024/03/18/test/</url>
+      <title>github加hexo搭建个人博客（一）</title>
+      <link href="/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+      <url>/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Demo: self-defined post centent</p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>由于本人刚准备转码，希望可以提高个人技术，因此搭建个人博客，来记录学习过程，遇到的问题以及解决问题的方法。希望这个搭建的方法可以帮助到大家。</p><p><a href="https://hexo.io/" title="Hexo官网">Hexo</a> 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他标记语言）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。我们可以利用大型同性交友网站<a href="https://github.com/" title="github官网">github</a>和 hexo 免费搭建个人博客，白嫖是第一声力！</p><h1 id="github账号注册和git软件的下载"><a href="#github账号注册和git软件的下载" class="headerlink" title="github账号注册和git软件的下载"></a>github账号注册和git软件的下载</h1><h2 id="github账号注册"><a href="#github账号注册" class="headerlink" title="github账号注册"></a>github账号注册</h2><p>进入<a href="https://github.com/" title="github官网">github</a>官网，点击右上角用邮箱进行注册。<br><img src="1.png"><br><img src="2.png"><br>注册完成，登录之后，选择免费的就好。<br><img src="3.png"><br>创建仓库：<br><img src="4.png"><br>仓库名为：你的github账号名.github.io 如图：<br><img src="5.png"><br>创建好仓库之后，在浏览器中输入：https:&#x2F;&#x2F;你的github账号名.github.io&#x2F; 可以看到相应的网站，当然现在都是空白的网页：<br><img src="6.png"></p><h2 id="git软件的下载"><a href="#git软件的下载" class="headerlink" title="git软件的下载"></a>git软件的下载</h2><p>前往<a href="https://git-scm.com/" title="git官网">git</a>官网，下载git软件：<br><img src="7.png"><br>下载相应的版本，本人是win10 64位系统：<br><img src="8.png"><br>接下来安装git软件，除了选择安装目录那里，其他的按照默认的就可以了：<br><img src="9.png"><br>安装完成后，右键选择Open Git Bash here ，打开Git Bash<br><img src="10.png"><br>输入</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git</span><br></pre></td></tr></table></figure><p><img src="11.png"><br>得到以下信息，表示git安装成功！<br><img src="12.png"></p><h2 id="与github进行绑定"><a href="#与github进行绑定" class="headerlink" title="与github进行绑定"></a>与github进行绑定</h2><p>由于本人的博客会利用github，需要利用git将相应的文件上传到github，因此需用通过SSH登录远程的主机，相应的方式有2中：1，口令登录。2，公钥登录。前者每次都要输入密码，比较繁琐。本人选择公钥登录，以避免频繁输入密码，输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure><p>然后一直回车进行，如果出现下面的图，表示生成成功。<br><img src="13.png"><br>生成的秘钥 id_rsa 和公钥 id_rsa.pub 在 C:\Users\你的windows用户名.ssh 目录下：<br><img src="14.png"><br>用记事本打开公钥，将里面的内容复制，进入github主页点击右边头像，然后点击 Settings<br><img src="15.png"><br>点击SSH and GPG keys ，再点击 New SSH key<br><img src="16.png"><br>在 Key 中输入公钥的内容，然后点击 Add SSH key<br><img src="17.png"><br>在 Git Bash 中输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure><p>再输入 yes ，得到下面的结果就表示和github连接成功。<br><img src="18.png"></p>]]></content>
       
       
       <categories>
           
-          <category> 环境 </category>
+          <category> 个人博客搭建 </category>
           
-          <category> python </category>
-          
-          <category> hexo </category>
+          <category> 技术学习 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> linux </tag>
+            <tag> github </tag>
             
-            <tag> http </tag>
-            
-            <tag> css </tag>
+            <tag> hexo </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="/2024/03/18/hello-world/"/>
-      <url>/2024/03/18/hello-world/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>demo2</title>
-      <link href="/2024/03/16/demo2/"/>
-      <url>/2024/03/16/demo2/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="第一篇文章"><a href="#第一篇文章" class="headerlink" title="第一篇文章"></a>第一篇文章</h1><p>传统的集成电路建立在硅材料基础之上，由于晶体管的尺寸越来越小，功耗、量子隧穿等现象对晶体管的影响尤为突出。在后摩尔时代，寻找非硅基材料的元器件，成为一个热门的研究方向。随着石墨烯的出现，越来越多的二维材料被成功的制备。二维材料具有优异的电子结构，高迁移率和高导热系数等优点，受到广泛的研究和关注，有望替代硅成为集成电路的原材料。并且大量的研究在理论和实验上已经证明了很多二维材料为拓扑绝缘体[6,13,21–27]。拓扑绝缘体是一种全新的量子材料，其和普通的绝缘体一样，具有绝缘的体态，但是在表面或者界面处具有无耗散的导电边缘态或表面态[6,13,14,21–30]。拓扑绝缘体的出现，有望解决晶体管集成度过高所带来的高功耗问题。本章从二维材料及其纳米结构开始介绍，然后介绍霍尔效应家庭、二维拓扑绝缘体、三维拓扑绝缘体以及高阶拓扑绝缘体，最后介绍一维石墨烯纳米带的拓扑态和拓扑分类。</p><h2 id="第二个标题"><a href="#第二个标题" class="headerlink" title="第二个标题"></a>第二个标题</h2><p>体结构使得其在力、热、光、电等物理领域有着独特的应用前景[1]。从上个世纪开始，二维材料一直是作为一种理论模型来研究，因为根据热力学理论，二维材料不具有热力学稳定性[31,32]。自从实验上成功剥离出第一个二维材料——石墨烯[33]，这激发了学界对于二维材料的广泛研究。在理论和实验上已经预言和制备出了成百上千种二维材料，例如石墨烯、过渡金属硫化物、六方氮化硼、黑磷和有机二维材料等[1,34,35]。除此之外，我们可以通过层间范德华力将多层二维材料像搭积木一样堆垛起来，形成满足特定需求的超晶格结构，如范德华异质结、多层石墨烯和转角石墨烯等[36–38]。目前实验上合成二维材料的方法一般是通过机械剥离的方式，从相应的体材料中剥离出对应的二维材料[34]。由于量子限制效应的影响，二维材料和相应的体材料有着不同的物理性质，其中最重要的一点就是带隙。对于大部分的体材料而言，带隙是小于单层材料的，并且随着层数的减少，带隙越来越大，甚至会出现从间接带隙变化为直接带隙的情况[39]。二维材料种类繁多，包括从半金属到绝缘体的单质和化合物，其能隙可以覆盖整个电磁谱，在各种领域都有着潜在应用！</p><p><img src="1.jpg"></p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;hello world!&quot;</span>)</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
       
     </entry>
     
