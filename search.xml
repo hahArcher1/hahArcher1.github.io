@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>github加hexo搭建个人博客（二）</title>
-      <link href="/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-      <url>/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+      <title>github加hexo搭建个人博客（六）</title>
+      <link href="/2024/03/20/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E5%85%AD%EF%BC%89/"/>
+      <url>/2024/03/20/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E5%85%AD%EF%BC%89/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="图床的搭建和使用"><a href="#图床的搭建和使用" class="headerlink" title="图床的搭建和使用"></a>图床的搭建和使用</h1><h2 id="为什么要使用图床"><a href="#为什么要使用图床" class="headerlink" title="为什么要使用图床"></a>为什么要使用图床</h2><p>在前面的文章中，我们使用了大量的图片。但是图片存储在什么地方，将会是一个很大的问题。如果将图片存储在hexo的项目文件中，就会使得整个项目很臃肿。同时我们也会使用大量的图片的url，通过网上去定位图片，但是这样做有时候，无法定位到这些图片。当然我们可以下载图片之后，再进行引用，这就又回到了前一个问题。解决这个问题的方式，可以将所有的本地图片上传到服务器，也就是图床。</p><h2 id="github仓库加Picogo软件"><a href="#github仓库加Picogo软件" class="headerlink" title="github仓库加Picogo软件"></a>github仓库加Picogo软件</h2><p>有很多方式都可以实现图床的功能，既然我们是要免费搭建，那就要白嫖到底了。这里我们选择采用 github 仓库 加 Picogo 的方式。</p><h3 id="新建-github-仓库"><a href="#新建-github-仓库" class="headerlink" title="新建 github 仓库"></a>新建 github 仓库</h3><p>这里就不多说了，参考前面：<a href="/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/" title="github加hexo搭建个人博客（一）">github加hexo搭建个人博客（一）</a>。</p><h3 id="Picogo-的安装和配置"><a href="#Picogo-的安装和配置" class="headerlink" title="Picogo 的安装和配置"></a>Picogo 的安装和配置</h3><h4 id="下载和安装-Picogo"><a href="#下载和安装-Picogo" class="headerlink" title="下载和安装 Picogo"></a>下载和安装 Picogo</h4><p>在这里<a href="https://github.com/Molunerfinn/PicGo/releases" title="Picogo的下载地址">下载</a>后，正常安装就行，傻瓜式安装。</p><h4 id="生成-github-token"><a href="#生成-github-token" class="headerlink" title="生成 github token"></a>生成 github token</h4><ol><li>进入主页，点击右上角的头像，点击 Settings<br><img src="3.png"></li><li>下拉至最末尾，点击 Developer settings<br><img src="4.png"></li><li>依次点击：Personal access tokens -&gt; Token -&gt; Generate a personal access token<br><img src="5.png"></li><li>Note 随便填，然后将所有都打勾选上，点击 Generate token<br><img src="6.png"></li><li>复制 token 备用<br><img src="7.png"></li></ol><h4 id="配置-Picogo"><a href="#配置-Picogo" class="headerlink" title="配置 Picogo"></a>配置 Picogo</h4><ol><li>打开软件后，进入图床设置，进行 github 的图床配置<br><img src="1.png"></li><li>按照下图进行配置，设定为新建的仓库名，在 token 那一栏中输入复制的 token ，保存即可。<br><img src="2.png"></li><li>在 PicGo 设置中可以开启代理，如果不需要的话，也可以不用开。<br><img src="11.png"></li><li>能够上传图片和复制 url 表明配置成功。<br><img src="8.png"><br><img src="9.png"><br><img src="10.png"></li><li>可以在 新建的 github 仓库中看到上传的图片。</li></ol>]]></content>
       
       
       <categories>
@@ -16,6 +16,165 @@
           <category> 个人博客搭建 </category>
           
           <category> 技术学习 </category>
+          
+          <category> 软件安装 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> github </tag>
+            
+            <tag> hexo </tag>
+            
+            <tag> Picgo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>github加hexo搭建个人博客（五）</title>
+      <link href="/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%94%EF%BC%89/"/>
+      <url>/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%94%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="hexo-主题的使用和相关设置"><a href="#hexo-主题的使用和相关设置" class="headerlink" title="hexo 主题的使用和相关设置"></a>hexo 主题的使用和相关设置</h1><p>hexo 有着很多好看有趣的主题，我们可以去<a href="https://hexo.io/themes/" title="hexo 主题">主题</a>官网上查看、下载和使用。 我这里使用的是 <a href="https://github.com/jerryc127/hexo-theme-butterfly" title="butterfly 主题">butterfly</a>。</p><h2 id="butterfly-主题的安装和配置"><a href="#butterfly-主题的安装和配置" class="headerlink" title="butterfly 主题的安装和配置"></a>butterfly 主题的安装和配置</h2><p>在博客目录下，打开 Git Bash，输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</span><br></pre></td></tr></table></figure><p>进行安装。<br><img src="1.png"><br>安装 pug 以及 stylus 的渲染器。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-pug hexo-renderer-stylus --save</span><br></pre></td></tr></table></figure><p><img src="2.png"><br>将 _config.yml 中的主题换成 butterfly 。<br><img src="3.png"><br>部署成功后，我们的博客变得更加的漂亮。<br><img src="4.png"><br>我们接下来可以按照 <a href="https://butterfly.js.org/" title="butterfly 的官方教程网站">butterfly 的官方教程网站</a>进行修改，加上特效和一些其他的功能，就可以让博客变得很漂亮和炫酷，就像<a href="https://butterfly.js.org/" title="butterfly 的官方教程网站">butterfly 的官方教程网站</a>一样。</p><h2 id="设置搜索功能"><a href="#设置搜索功能" class="headerlink" title="设置搜索功能"></a>设置搜索功能</h2><p>当我们的博客内容越来越多的时候，能够快速搜索到相应的文章，就会显得越来越重要。 我们采用本地搜索，先安装相关的插件：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure><p><img src="5.png"><br>install hexo-generator-search 插件会把文章的信息生成一个搜素的数据库保存到本地，因此搜素的速度很快。在博客的配置文件 _config.yml 中添加：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">search:</span><br><span class="line">  path: search.xml #生成的搜素文件名</span><br><span class="line">  field: post  #指定搜素的对象，我们这里用的是文章</span><br><span class="line">  format: html #搜素结果的格式</span><br><span class="line">  limit: 10000 #最多的显示结果数</span><br></pre></td></tr></table></figure><p>修改主题的配置文件 _config.butterfly.yml ，打开 local_search：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">local_search:</span><br><span class="line">  enable: true</span><br><span class="line">  # Preload the search data when the page loads.</span><br><span class="line">  preload: false</span><br><span class="line">  # Show top n results per article, show all results by setting to -1</span><br><span class="line">  top_n_per_article: 1</span><br><span class="line">  # Unescape html strings to the readable one.</span><br><span class="line">  unescape: false</span><br><span class="line">  CDN:</span><br></pre></td></tr></table></figure><p>生成搜素文件：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure><p>部署到 github 上，可以看到搜素栏可以使用。<br><img src="6.png"></p><h2 id="设置评论区和-Gitalk-的使用"><a href="#设置评论区和-Gitalk-的使用" class="headerlink" title="设置评论区和 Gitalk 的使用"></a>设置评论区和 Gitalk 的使用</h2><p>由于 hexo 是纯静态博客框架，所以其本身无法支持评论功能，需要第三方平台和软件的支持。在博客中我们需要读者的评论和交流，以提高我们的技术。因此我们需要给博客添加评论功能，我们采用的是利用 github 的免费评论平台—— Gitalk 。</p><h3 id="配置部署"><a href="#配置部署" class="headerlink" title="配置部署"></a>配置部署</h3><ul><li>进入 github 主页，点击右上方头像，点击 Settings<br><img src="7.png"></li><li>下拉到最后点击 Developer settings<br><img src="8.png"></li><li>依次点击 QAuth Apps ，Register a new application<br><img src="9.png"></li><li>填好之后点击 Regiter application<br><img src="10.png"></li><li>点击 Generate a new client secret , 并复制 Client ID 和 Client secrets。<br><img src="11.jpg"></li><li>修改主题的配置文件 _config.butterfly.yml<br><img src="12.png"><br><img src="13.png"><br>部署到 github 上可以看到评论已经开启。<br><img src="14.png"></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 个人博客搭建 </category>
+          
+          <category> 技术学习 </category>
+          
+          <category> 软件安装 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> github </tag>
+            
+            <tag> hexo </tag>
+            
+            <tag> butterfly </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>markdownpad2的安装和破解</title>
+      <link href="/2024/03/19/markdownpad2%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E7%A0%B4%E8%A7%A3/"/>
+      <url>/2024/03/19/markdownpad2%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E7%A0%B4%E8%A7%A3/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="软件下载和安装"><a href="#软件下载和安装" class="headerlink" title="软件下载和安装"></a>软件下载和安装</h2><p>markdownpad2 和 awesomium_v1.6.6_sdk_win 的下载链接可以在<a href="https://haharcher1.github.io/download/" title="博客的资源页面">博客的资源页面</a>找到。<br>先安装 awesomium_v1.6.6_sdk_win 。<br><img src="1.png"><br>一路next下去，安装路径可以自己选。<br><img src="2.png"><br>最后完成安装。<br><img src="3.png"><br>接下来安装 markdownpad2 。<br><img src="4.png"><br>一路next下去，安装路径可以自己选。<br><img src="5.png"><br>最后安装成功。<br><img src="6.png"></p><h2 id="markdownpad2-的破解"><a href="#markdownpad2-的破解" class="headerlink" title="markdownpad2 的破解"></a>markdownpad2 的破解</h2><p>运行 markdownpad2 之后会出现激活的界面。<br><img src="7.png"><br>输入邮箱地址：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Soar360@live.com</span><br></pre></td></tr></table></figure><p>输入 License key</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">GBPduHjWfJU1mZqcPM3BikjYKF6xKhlKIys3i1MU2eJHqWGImDHzWdD6xhMNLGVpbP2M5SN6bnxn2kSE8qHqNY5QaaRxmO3YSMHxlv2EYpjdwLcPwfeTG7kUdnhKE0vVy4RidP6Y2wZ0q74f47fzsZo45JE2hfQBFi2O9Jldjp1mW8HUpTtLA2a5/sQytXJUQl/QKO0jUQY4pa5CCx20sV1ClOTZtAGngSOJtIOFXK599sBr5aIEFyH0K7H4BoNMiiDMnxt1rD8Vb/ikJdhGMMQr0R4B+L3nWU97eaVPTRKfWGDE8/eAgKzpGwrQQoDh+nzX1xoVQ8NAuH+s4UcSeQ==</span><br><span class="line"></span><br></pre></td></tr></table></figure><p><img src="8.png"><br>最后激活成功。<br><img src="9.png"><br>感谢<a href="https://www.cnblogs.com/Ning-Blog/p/15142839.html" title="MarkdownPad 2在win10上安装及破解（含安装包">这篇博客的博主提供的破解码</a>。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术学习 </category>
+          
+          <category> 软件安装 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> markdownpad2 </tag>
+            
+            <tag> awesomium_v1.6.6_sdk_win </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>github加hexo搭建个人博客（四）</title>
+      <link href="/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
+      <url>/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E5%9B%9B%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="文章书写和图片插入"><a href="#文章书写和图片插入" class="headerlink" title="文章书写和图片插入"></a>文章书写和图片插入</h1><h2 id="文章创建"><a href="#文章创建" class="headerlink" title="文章创建"></a>文章创建</h2><p>在 My_Blog 目录下打开 Git Bash ，输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new [layout] &quot;文章名字&quot; # layout 可以省略</span><br></pre></td></tr></table></figure><p>关于 layout 的说明可以参考，<a href="https://fuguigui.github.io/hexo2/" title="一次完整的Hexo写作流程">这篇博客</a>和<a href="https://hexo.io/zh-cn/docs/writing.html" title="官方文档">官方文档</a>。<br><img src="1.png"><br>执行结束后会在 My_Blog\source_posts 文件夹下面生成 demo.md 文件。 hexo 支持将 markdown 语法写出来的文章转换为 Html 的格式。 因此我们在demo.md 文件中只需要按照 markdown 语法进行写作就可以了。 markdown 的语法可以参考<a href="https://www.zhihu.com/tardis/zm/art/99319314?source_id=1003" title="Markdown语法及原理从入门到高级（可能是全网最全）">这篇知乎专栏</a>。书写 markdown 的软件，我使用的是 markdownpad2 和 awesomium_v1.6.6_sdk 。软件的下载和安装请参考：<a href="/2024/03/19/markdownpad2%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E7%A0%B4%E8%A7%A3/" title="markdownpad2的安装和破解">markdownpad2的安装和破解</a>。</p><p>软件安装成功后，直接打开 demo.md ，输入博客内容就行，如图：<br><img src="2.png"><br>依次在 Git Bash 中输入命令：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure><p>部署到 github 上，进入博客网站，可以看到：<br><img src="3.png"></p><h2 id="图片的插入"><a href="#图片的插入" class="headerlink" title="图片的插入"></a>图片的插入</h2><p>修改主目录 My_Blog 中的配置文件 _config.yml 中的参数：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">post_asset_folder: true</span><br></pre></td></tr></table></figure><p><img src="4.png"><br>修改之后，每次我们用命令在 _posts 文件夹下面生成 .md 文件时，将会同时生成一个同名的文件夹，图片就可以放在这个文件夹下。<br><img src="5.png"><br><img src="6.png"><br>在 Git Bash 输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure><p>安装插件。<br><img src="7.png"><br>按照<a href="https://github.com/xcodebuild/hexo-asset-image" title="官方文档">官方的使用说明</a>。<br><img src="14.png"><br>我的图片位置和文档中的书写方法。<br><img src="8.png"><br><img src="9.png"><br>部署成功后，发现图片无法显示：<br><img src="10.png"></p><p>我在这里卡了好久，在网上找了好多教程，都发现没有用。我用谷歌浏览器的开发者工具，发现在图片的 url 中莫名其妙会多出来一个 .com ，完全不能理解。<br><img src="11.png"><br>我都快放弃了，最后在一篇<a href="https://zhuanlan.zhihu.com/p/542101567" title="Hexo 图片插入无法显示的问题">知乎文章</a>中找到了解决方案。主要是这个插件太老了，出bug了，作者也不更新了，而hexo 都已经更新了好几个版本了。解决方法是在根目录中，我这里是 My_Blog ，按照以下顺序：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">node_modules -&gt; hexo-asset-image -&gt; index.js</span><br></pre></td></tr></table></figure><ul><li>找到 index.js 文件</li><li>用记事本打开 index.js 文件</li><li>修改内容 index.js 里面的内容</li></ul><p>修改前：</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="variable language_">this</span>).<span class="title function_">attr</span>(<span class="string">&#x27;src&#x27;</span>, config.<span class="property">root</span> + link + src);</span><br></pre></td></tr></table></figure><p>修改后：</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">$(<span class="variable language_">this</span>).<span class="title function_">attr</span>(<span class="string">&#x27;src&#x27;</span>, src);</span><br></pre></td></tr></table></figure><p><img src="12.png"><br>重新部署到 github 上，可以看到图片加载成功！<br><img src="13.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 个人博客搭建 </category>
+          
+          <category> 技术学习 </category>
+          
+          <category> 软件安装 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> github </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>github加hexo搭建个人博客（三）</title>
+      <link href="/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%89%EF%BC%89/"/>
+      <url>/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%89%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="安装-hexo-并生成网页"><a href="#安装-hexo-并生成网页" class="headerlink" title="安装 hexo 并生成网页"></a>安装 hexo 并生成网页</h1><h2 id="安装-hexo"><a href="#安装-hexo" class="headerlink" title="安装 hexo"></a>安装 hexo</h2><p>创建一个任意名字的文件夹，这里我创建的是 My_Blog 。 进入该文件夹，右键进入 Git Bash 输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure><p><img src="1.png"><br>输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure><p>初始化我们的博客。<br><img src="2.png"><br>输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure><p>生成静态文件。<br><img src="3.png"><br>输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure><p>进行本地查看。<br><img src="4.png"><br>在浏览器中输入： <a href="http://localhost:4000/">http://localhost:4000/</a><br><img src="5.png"><br>可以看到我们的博客已经布置成功了。</p><h2 id="部署到github上"><a href="#部署到github上" class="headerlink" title="部署到github上"></a>部署到github上</h2><p>在 My_Blog 文件夹中，用笔记本打开 _config.yml 文件，在最后添加：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: https://github.com/你的 github 用户名/你的 github 用户名.github.io.git  #你的仓库地址</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure><p><img src="6.png"></p><p>在 My_Blog 文件夹中，打开 Git Bash，输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure><p>安装 Git 部署插件。<br><img src="7.png"><br>第一次提交到 github ，会报错，我们需要先配置邮箱和用户名。</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global user.email &quot;you@example.com&quot; #注册 github 时的邮箱</span><br><span class="line"></span><br><span class="line">git config --global user.name &quot;Your Name&quot; #注册 github 时的用户名</span><br></pre></td></tr></table></figure><p>依次输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean #清除缓存文件和静态文件</span><br><span class="line"></span><br><span class="line">hexo g #生成静态文件</span><br><span class="line"></span><br><span class="line">hexo d # 部署到对应的 github 仓库</span><br></pre></td></tr></table></figure><p>在浏览器中输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://你的 github 用户名.github.io/</span><br></pre></td></tr></table></figure><p>就可以看到相应的网站：<br><img src="8.png"><br>同时对应的 github 仓库也存在文件。<br><img src="9.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 个人博客搭建 </category>
+          
+          <category> 技术学习 </category>
+          
+          <category> 软件安装 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> github </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>github加hexo搭建个人博客（二）</title>
+      <link href="/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+      <url>/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="安装-node-js-并配置-node-js-的环境"><a href="#安装-node-js-并配置-node-js-的环境" class="headerlink" title="安装 node.js 并配置 node.js 的环境"></a>安装 node.js 并配置 node.js 的环境</h1><p>由于 hexo 是基于 node.js 开发的框架，因此我们需要安装 node.js 并配置好相应的环境。</p><h2 id="下载并安装-node-js"><a href="#下载并安装-node-js" class="headerlink" title="下载并安装 node.js"></a>下载并安装 node.js</h2><p>进入 <a href="https://nodejs.org/en," title="node.js 的官网">node.js</a> 的官网，选择相应的版本下载就行。<br><img src="1.png"><br>安装路径那里可以选择安装的地方，其他就是一路 next 就好。<br><img src="2.png"><br>安装完成后，node.js 默认会添加进环境变量中，因此在windows的命令提示符窗口中输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">node -v</span><br><span class="line"></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure><p>可以看到下面的版本信息，就表明安装成功了。<br><img src="3.png"></p><h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>我们在使用 npm 安装一些包和插件的时候，会默认安装到 C 盘，占用系统盘的空间，影响计算机的运行速度，因此我们需要更改默认设置。在命令提示符窗口中输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm config set prefix &quot;D:\Program Files\nodejs\node_global&quot;</span><br><span class="line"></span><br><span class="line">npm config set cache &quot;D:\Program Files\nodejs\node_cache&quot;</span><br></pre></td></tr></table></figure><p><img src="4.png"><br>在我的电脑 -&gt; 属性 -&gt; 高级系统设置 -&gt; 环境变量 -&gt; 系统环境变量，新建一个名叫 NODE_PATH 的变量名，在变量值处，输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\Program Files\nodejs\node_modules</span><br></pre></td></tr></table></figure><p><img src="10.png"></p><p>再编辑上面的用户环境变量中的 Path。<br>修改前：<br><img src="5.png"><br>编辑为：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">D:\Program Files\nodejs\node_global</span><br></pre></td></tr></table></figure><p>修改后：<br><img src="6.png"><br>在命令提示符中输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install webpack -g</span><br></pre></td></tr></table></figure><p>可以看到安装的包已经安装到了我们所指定的文件夹，对于 node.js 的安装和环境的配置就算完成了。<br><img src="7.png"><br><img src="8.png"><br><img src="9.png"></p><p>参考 <a href="https://blog.csdn.net/antma/article/details/86104068," title="node.js 安装详细步骤教程">node.js 安装详细步骤教程</a>。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 个人博客搭建 </category>
+          
+          <category> 技术学习 </category>
+          
+          <category> 软件安装 </category>
           
       </categories>
       
@@ -37,7 +196,7 @@
       <link href="/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/"/>
       <url>/2024/03/19/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>由于本人刚准备转码，希望可以提高个人技术，因此搭建个人博客，来记录学习过程，遇到的问题以及解决问题的方法。希望这个搭建的方法可以帮助到大家。</p><p><a href="https://hexo.io/" title="Hexo官网">Hexo</a> 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他标记语言）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。我们可以利用大型同性交友网站<a href="https://github.com/" title="github官网">github</a>和 hexo 免费搭建个人博客，白嫖是第一声力！</p><h1 id="github账号注册和git软件的下载"><a href="#github账号注册和git软件的下载" class="headerlink" title="github账号注册和git软件的下载"></a>github账号注册和git软件的下载</h1><h2 id="github账号注册"><a href="#github账号注册" class="headerlink" title="github账号注册"></a>github账号注册</h2><p>进入<a href="https://github.com/" title="github官网">github</a>官网，点击右上角用邮箱进行注册。<br><img src="1.png"><br><img src="2.png"><br>注册完成，登录之后，选择免费的就好。<br><img src="3.png"><br>创建仓库：<br><img src="4.png"><br>仓库名为：你的github账号名.github.io 如图：<br><img src="5.png"><br>创建好仓库之后，在浏览器中输入：https:&#x2F;&#x2F;你的github账号名.github.io&#x2F; 可以看到相应的网站，当然现在都是空白的网页：<br><img src="6.png"></p><h2 id="git软件的下载"><a href="#git软件的下载" class="headerlink" title="git软件的下载"></a>git软件的下载</h2><p>前往<a href="https://git-scm.com/" title="git官网">git</a>官网，下载git软件：<br><img src="7.png"><br>下载相应的版本，本人是win10 64位系统：<br><img src="8.png"><br>接下来安装git软件，除了选择安装目录那里，其他的按照默认的就可以了：<br><img src="9.png"><br>安装完成后，右键选择Open Git Bash here ，打开Git Bash<br><img src="10.png"><br>输入</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git</span><br></pre></td></tr></table></figure><p><img src="11.png"><br>得到以下信息，表示git安装成功！<br><img src="12.png"></p><h2 id="与github进行绑定"><a href="#与github进行绑定" class="headerlink" title="与github进行绑定"></a>与github进行绑定</h2><p>由于本人的博客会利用github，需要利用git将相应的文件上传到github，因此需用通过SSH登录远程的主机，相应的方式有两种：1，口令登录。2，公钥登录。前者每次都要输入密码，比较繁琐。本人选择公钥登录，以避免频繁输入密码，在 git bash 中输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure><p>然后一直回车进行，如果出现下面的图，表示生成成功。<br><img src="13.png"><br>生成的秘钥 id_rsa 和公钥 id_rsa.pub 在 C:\Users\你的windows用户名\.ssh 目录下：<br><img src="14.png"><br>用记事本打开公钥，将里面的内容复制，进入github主页点击右边头像，然后点击 Settings<br><img src="15.png"><br>点击SSH and GPG keys ，再点击 New SSH key<br><img src="16.png"><br>在 Key 中输入公钥的内容，然后点击 Add SSH key<br><img src="17.png"><br>在 Git Bash 中输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure><p>再输入 yes ，得到下面的结果就表示和github连接成功。<br><img src="18.png"></p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>由于本人刚准备转码，希望可以提高个人技术，因此搭建个人博客，来记录学习过程，遇到的问题以及解决问题的方法。希望这个搭建的方法可以帮助到大家。</p><p><a href="https://hexo.io/" title="hexo官网">hexo</a> 是一个快速、简洁且高效的博客框架。hexo 使用 Markdown（或其他标记语言）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。我们可以利用大型同性交友网站<a href="https://github.com/" title="github官网">github</a>和 hexo 免费搭建个人博客，白嫖是第一声力！</p><h1 id="github账号注册和git软件的下载"><a href="#github账号注册和git软件的下载" class="headerlink" title="github账号注册和git软件的下载"></a>github账号注册和git软件的下载</h1><h2 id="github账号注册"><a href="#github账号注册" class="headerlink" title="github账号注册"></a>github账号注册</h2><p>进入<a href="https://github.com/" title="github官网">github</a>官网，点击右上角用邮箱进行注册。<br><img src="1.png"><br><img src="2.png"><br>注册完成，登录之后，选择免费的就好。<br><img src="3.png"><br>创建仓库：<br><img src="4.png"><br>仓库名为：你的github账号名.github.io 如图：<br><img src="5.png"><br>创建好仓库之后，在浏览器中输入：https:&#x2F;&#x2F;你的github账号名.github.io&#x2F; 可以看到相应的网站，当然现在都是空白的网页：<br><img src="6.png"></p><h2 id="git软件的下载"><a href="#git软件的下载" class="headerlink" title="git软件的下载"></a>git软件的下载</h2><p>前往<a href="https://git-scm.com/" title="git官网">git</a>官网，下载git软件：<br><img src="7.png"><br>下载相应的版本，本人是win10 64位系统：<br><img src="8.png"><br>接下来安装git软件，除了选择安装目录那里，其他的按照默认的就可以了：<br><img src="9.png"><br>安装完成后，右键选择Open Git Bash here ，打开Git Bash<br><img src="10.png"><br>输入</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git</span><br></pre></td></tr></table></figure><p><img src="11.png"><br>得到以下信息，表示git安装成功！<br><img src="12.png"></p><h2 id="与github进行绑定"><a href="#与github进行绑定" class="headerlink" title="与github进行绑定"></a>与github进行绑定</h2><p>由于本人的博客会利用github，需要利用git将相应的文件上传到github，因此需用通过SSH登录远程的主机，相应的方式有两种：1，口令登录。2，公钥登录。前者每次都要输入密码，比较繁琐。本人选择公钥登录，以避免频繁输入密码，在 git bash 中输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure><p>然后一直回车进行，如果出现下面的图，表示生成成功。<br><img src="13.png"><br>生成的秘钥 id_rsa 和公钥 id_rsa.pub 在 C:\Users\你的windows用户名\.ssh 目录下：<br><img src="14.png"><br>用记事本打开公钥，将里面的内容复制，进入github主页点击右边头像，然后点击 Settings<br><img src="15.png"><br>点击SSH and GPG keys ，再点击 New SSH key<br><img src="16.png"><br>在 Key 中输入公钥的内容，然后点击 Add SSH key<br><img src="17.png"><br>在 Git Bash 中输入：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure><p>再输入 yes ，得到下面的结果就表示和github连接成功。<br><img src="18.png"></p>]]></content>
       
       
       <categories>
@@ -45,6 +204,8 @@
           <category> 个人博客搭建 </category>
           
           <category> 技术学习 </category>
+          
+          <category> 软件安装 </category>
           
       </categories>
       
