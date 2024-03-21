@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>github加hexo搭建个人博客（七）</title>
+      <link href="/2024/03/21/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%83%EF%BC%89/"/>
+      <url>/2024/03/21/github%E5%8A%A0hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%83%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h1><p>主要是自己想把收集来的好看的图片整理成相册之类的，所以想着在博客中添加一个相册功能。</p><h1 id="相册仓库搭建"><a href="#相册仓库搭建" class="headerlink" title="相册仓库搭建"></a>相册仓库搭建</h1><ol><li>在主题配置文件 _config.butterfly.yml 中设置相册<br><img src="5.png"></li><li>在 Git Bash 输入：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new [layout] gallery</span><br></pre></td></tr></table></figure>创建相册仓库</li><li>修改仓库 &#x2F;source&#x2F;gallery&#x2F;index.md<br><img src="1.png"></li><li>创建相册<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;gallery-group-main&quot;&gt;</span><br><span class="line">&#123;% galleryGroup name description link img-url %&#125;</span><br><span class="line">&#123;% galleryGroup name description link img-url %&#125;</span><br><span class="line">&#123;% galleryGroup name description link img-url %&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></li></ol><ul><li>name：图库名字</li><li>description：图库描述</li><li>link：连接到对应相册的地址</li><li>img-url：图库封面的地址<br>例如：<br><img src="2.png"></li></ul><h1 id="相册的创建"><a href="#相册的创建" class="headerlink" title="相册的创建"></a>相册的创建</h1><ol><li>在 Git Bash 输入：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo new page landscape</span><br></pre></td></tr></table></figure>创建相册</li><li>修改相册 &#x2F;source&#x2F;landscape&#x2F;index.md<br><img src="3.png"></li><li>创建相册内容<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% gallery [lazyload],[rowHeight],[limit] %&#125;</span><br><span class="line">markdown 图片格式</span><br><span class="line">&#123;% endgallery %&#125;</span><br></pre></td></tr></table></figure></li></ol><ul><li>lazyload ：【可选】点击按钮加载更多图片，填写 true&#x2F;false。默认为 false。</li><li>rowHeight ：【可选】图片显示的高度，如果需要一行显示更多的图片，可设置更小的数字。默认为 220。</li><li>limit ：【可选】每次加载多少张照片。默认为 10。<br>例如：<br><img src="4.png"></li></ul><h1 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h1><p><img src="6.png"><br><img src="7.png"><br><img src="8.png"></p><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul><li><a href="https://butterfly.js.org/" title="butterfly 的官方教程网站">butterfly 的官方教程网站</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 个人博客搭建 </category>
+          
+          <category> 技术学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> github </tag>
+            
+            <tag> hexo </tag>
+            
+            <tag> butterfly </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>虚拟机安装Centos8 stream以及网络配置</title>
       <link href="/2024/03/20/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Centos8-stream%E4%BB%A5%E5%8F%8A%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/"/>
       <url>/2024/03/20/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Centos8-stream%E4%BB%A5%E5%8F%8A%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/</url>
