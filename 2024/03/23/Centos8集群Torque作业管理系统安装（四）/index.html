@@ -1,0 +1,358 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Centos8集群Torque作业管理系统安装（四） | 哆啦酱的点心屋</title><meta name="author" content="爱吃铜锣烧的哆啦酱"><meta name="copyright" content="爱吃铜锣烧的哆啦酱"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="背景介绍前面安装了这么多的软件，终于要安装我们的主角 Torque 了。组里的服务器就是用的Torque作为作业管理的。 Torque 作业系统的搭建基本概念对于高性能计算集群而言，作业调度系统是必不可少的工具软件，不论是单机计算还是集群计算，它的作用是更好的分配计算资源，管理用户的作业。作业调度软件有很多种，常见的有Torque、MAUI、SGE、slurm、HTcondar、openPBS等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centos8集群Torque作业管理系统安装（四）">
+<meta property="og:url" content="https://haharcher1.github.io/2024/03/23/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E5%9B%9B%EF%BC%89/index.html">
+<meta property="og:site_name" content="哆啦酱的点心屋">
+<meta property="og:description" content="背景介绍前面安装了这么多的软件，终于要安装我们的主角 Torque 了。组里的服务器就是用的Torque作为作业管理的。 Torque 作业系统的搭建基本概念对于高性能计算集群而言，作业调度系统是必不可少的工具软件，不论是单机计算还是集群计算，它的作用是更好的分配计算资源，管理用户的作业。作业调度软件有很多种，常见的有Torque、MAUI、SGE、slurm、HTcondar、openPBS等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_imagesc5366469b00940f5b8077c20c2c2d089.jpg">
+<meta property="article:published_time" content="2024-03-23T02:46:47.000Z">
+<meta property="article:modified_time" content="2024-03-23T13:45:21.116Z">
+<meta property="article:author" content="爱吃铜锣烧的哆啦酱">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Centos8 stream">
+<meta property="article:tag" content="Torque">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_imagesc5366469b00940f5b8077c20c2c2d089.jpg"><link rel="shortcut icon" href="/img/favicon2.png"><link rel="canonical" href="https://haharcher1.github.io/2024/03/23/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E5%9B%9B%EF%BC%89/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 爱吃铜锣烧的哆啦酱","link":"链接: ","source":"来源: 哆啦酱的点心屋","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Centos8集群Torque作业管理系统安装（四）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-03-23 21:45:21'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.1.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page child" href="/download/"><i class="fa-fw fas fa-download"></i><span> 资源</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_imagesc5366469b00940f5b8077c20c2c2d089.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="哆啦酱的点心屋"><span class="site-name">哆啦酱的点心屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page child" href="/download/"><i class="fa-fw fas fa-download"></i><span> 资源</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Centos8集群Torque作业管理系统安装（四）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-23T02:46:47.000Z" title="发表于 2024-03-23 10:46:47">2024-03-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-03-23T13:45:21.116Z" title="更新于 2024-03-23 21:45:21">2024-03-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/">软件安装</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">技术学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Centos8集群Torque作业管理系统安装（四）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h1><p>前面安装了这么多的软件，终于要安装我们的主角 Torque 了。组里的服务器就是用的Torque作为作业管理的。</p>
+<h1 id="Torque-作业系统的搭建"><a href="#Torque-作业系统的搭建" class="headerlink" title="Torque 作业系统的搭建"></a>Torque 作业系统的搭建</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>对于高性能计算集群而言，作业调度系统是必不可少的工具软件，不论是单机计算还是集群计算，它的作用是更好的分配计算资源，管理用户的作业。作业调度软件有很多种，常见的有Torque、MAUI、SGE、slurm、HTcondar、openPBS等。我这里采用的Torque软件。</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>关机的时候先关计算节点再关控制节点，开机的时候先开控制节点再开计算节点。</p>
+<h2 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h2><table>
+<thead>
+<tr>
+<th align="center">主机名</th>
+<th align="center">系统</th>
+<th align="center">ip</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">master（控制节点）</td>
+<td align="center">Centos8 stream</td>
+<td align="center">172.16.34.122</td>
+</tr>
+<tr>
+<td align="center">node1（计算节点）</td>
+<td align="center">Centos8 stream</td>
+<td align="center">172.16.34.123</td>
+</tr>
+</tbody></table>
+<h2 id="控制节点和计算节点的共同配置"><a href="#控制节点和计算节点的共同配置" class="headerlink" title="控制节点和计算节点的共同配置"></a>控制节点和计算节点的共同配置</h2><ol>
+<li>为了避免服务端和客户端无法通信，关闭防火墙和selinux<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line">systemctl disable firewalld</span><br><span class="line">vi /etc/selinux/config</span><br><span class="line">SELINUX=disabled</span><br></pre></td></tr></table></figure></li>
+<li>修改hosts文件<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /etc/hosts</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">添加</span></span><br><span class="line">172.16.34.122 master</span><br><span class="line">172.16.34.123 node1</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="控制节点的配置"><a href="#控制节点的配置" class="headerlink" title="控制节点的配置"></a>控制节点的配置</h2><ol>
+<li>安装相关的软件<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install libxml2-devel openssl-devel gcc gcc-c++ boost-devel libtool -y</span><br></pre></td></tr></table></figure></li>
+<li>下载 Torque 软件，相应的软件可以在本博客的<a href="https://haharcher1.github.io/download/" title="资源">资源</a>页面找到，上传到控制节点并解压。<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -zxvf torque-6.1.3_gcc8.tar.gz</span><br></pre></td></tr></table></figure></li>
+<li>进入 Torque 文件夹，并配置安装位置<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd torque-6.1.3</span><br><span class="line">./configure --prefix=/usr/local/torque --with-scp--with-default-server=master #注意 master 为控制节点主机名，请根据自己的情况修改</span><br></pre></td></tr></table></figure>
+<img src="1.png"></li>
+<li>进行安装<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">make</span><br><span class="line">make install</span><br><span class="line">make packages</span><br></pre></td></tr></table></figure></li>
+<li>添加库到系统<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">libtool --finish /usr/local/torque/lib</span><br></pre></td></tr></table></figure>
+<img src="2.png"></li>
+<li>拷贝作业调度服务到 &#x2F;etc&#x2F;init.d ，当我们安装集群版本时，控制节点一般不参与计算，无需拷贝 pbs_mom ，其为作业调度的客户端服务进程，只需要 pbs_server 和pbs_trqauthd 。<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cp contrib/init.d/pbs_server /etc/init.d/</span><br><span class="line">cp contrib/init.d/trqauthd /etc/init.d/</span><br></pre></td></tr></table></figure></li>
+<li>配置 Torque 环境，编译完成后会在 &#x2F;etc&#x2F;profile.d&#x2F;目录下自动生成torque.sh文件<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ls </span><br></pre></td></tr></table></figure>
+<img src="3.png"><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">source /etc/profile.d/torque.sh</span><br></pre></td></tr></table></figure></li>
+<li>设置所有用户每次登陆都配置 Torque 环境<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/profile</span><br><span class="line">#添加 </span><br><span class="line">source /etc/profile.d/torque.sh</span><br></pre></td></tr></table></figure></li>
+<li>设置服务开机自动启动<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl enable pbs_server.service</span><br><span class="line">systemctl enable trqauthd.service</span><br></pre></td></tr></table></figure></li>
+<li>初始化并启动 Torque 服务<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./torque.setup root</span><br></pre></td></tr></table></figure>
+<img src="4.png"></li>
+<li>在 &#x2F;var&#x2F;spool&#x2F;torque&#x2F;server_priv&#x2F;nodes 添加计算节点的信息<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi /var/spool/torque/server_priv/nodes</span><br></pre></td></tr></table></figure>
+<img src="5.png"></li>
+</ol>
+<ul>
+<li>nodes文件的添加规则为：主机名，可用CPU核心数（物理核心数），作业队列名</li>
+<li>node1 为主机名</li>
+<li>np&#x3D;填写该主机的可用CPU核心数，请注意，填写物理核心数，而不是超线程数</li>
+<li>bigmem 是队列名。可以填写多个队列名</li>
+</ul>
+<ol start="12">
+<li>将计算节点的所需要的安装包上传到计算节点<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp torque-package-clients-linux-x86_64.sh torque-package-mom-linux-x86_64.sh node1:/root/</span><br><span class="line">scp contrib/init.d/pbs_mom node1:/etc/init.d/</span><br><span class="line">scp contrib/init.d/trqauthd node1:/etc/init.d/</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="计算节点的配置"><a href="#计算节点的配置" class="headerlink" title="计算节点的配置"></a>计算节点的配置</h2><ol>
+<li>运行安装程序<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./torque-package-mom-linux-x86_64.sh --install</span><br><span class="line">./torque-package-clients-linux-x86_64.sh --install</span><br></pre></td></tr></table></figure></li>
+<li>修改配置文件<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /var/spool/torque/mom_priv/config</span><br><span class="line">#添加</span><br><span class="line">pbsserver master</span><br><span class="line">logevent 255</span><br></pre></td></tr></table></figure></li>
+<li>启动服务设置开机自动启动<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">/etc/init.d/pbs_mom start</span><br><span class="line">systemctl enable pbs_mom </span><br><span class="line">/etc/init.d/trqauthd start</span><br><span class="line">systemctl enable trqauthd</span><br></pre></td></tr></table></figure></li>
+<li>每一个计算节点都需要这样配置</li>
+</ol>
+<h2 id="重启作业调度系统"><a href="#重启作业调度系统" class="headerlink" title="重启作业调度系统"></a>重启作业调度系统</h2><ul>
+<li>控制节点：<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl restart pbs_server</span><br><span class="line">systemctl restart trqauthd</span><br></pre></td></tr></table></figure></li>
+<li>计算节点：<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl restart trqauthd</span><br><span class="line">systemctl restart pbs_mom</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h2><ul>
+<li>for i in pbs_server pbs_sched pbs_mom trqauthd; do service $i start; done</li>
+<li>for i in pbs_server pbs_sched pbs_mom trqauthd; do service $i stop; done</li>
+<li>for i in pbs_server pbs_sched pbs_mom trqauthd; do service $i status; done<br>或者</li>
+<li>&#x2F;etc&#x2F;init.d&#x2F;pbs_server start|stop|status  </li>
+<li>&#x2F;etc&#x2F;init.d&#x2F;pbs_sched start|stop|status  </li>
+<li>&#x2F;etc&#x2F;init.d&#x2F;pbs_mom start|stop|status  </li>
+<li>&#x2F;etc&#x2F;init.d&#x2F;trqauthd start|stop|status</li>
+</ul>
+<h1 id="Maui的安装"><a href="#Maui的安装" class="headerlink" title="Maui的安装"></a>Maui的安装</h1><h2 id="基本概念-1"><a href="#基本概念-1" class="headerlink" title="基本概念"></a>基本概念</h2><p>Torque自带一个任务调度器 pbs_sched ，但是我们并没有安装。我们安装Maui来代替，其功能丰富，适合中小集群使用。Maui 只需装在控制节点上，计算节点上不必安装。为丰富torque的管理调度功能，一般用maui调度和管理torque作业。</p>
+<h2 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h2><p>Maui 只需要安装在控制节点上。<br>2. 下载 Maui 软件，相应的软件可以在本博客的<a href="https://haharcher1.github.io/download/" title="资源">资源</a>页面找到，上传到控制节点并解压。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -zxvf maui-3.3.1.tar.gz</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>进入 Maui 文件夹，并配置安装位置<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd maui-3.3.1</span><br><span class="line">./configure --prefix=/usr/local/maui --with-pbs=/usr/local/torque</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>.&#x2F;configure 预编译</li>
+<li>–prefix&#x3D; 指定编译安装路径</li>
+<li>–with-pbs&#x3D;&#x2F;usr&#x2F;local&#x2F;torque 指定torque路径<br><img src="6.png"></li>
+</ul>
+<ol start="4">
+<li>安装<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+如果make过程中出现类似“&#x2F;usr&#x2F;bin&#x2F;ld: cannot find -ltorque”，编辑Makefile文件，参考如下添加torque的库路径和头文件路径：<br>export PBSCFLAGS &#x3D; -I&#x2F;usr&#x2F;local&#x2F;torque&#x2F;include<br>export PBSLDFLAGS &#x3D; -L&#x2F;usr&#x2F;local&#x2F;torque&#x2F;lib -ltorque<br><img src="15.png"></li>
+<li>配置<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vi contrib/service-scripts/redhat.maui.d</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">修改</span></span><br><span class="line">MAUI_PREFIX=/opt -&gt; MAUI_PREFIX=/usr/local/maui</span><br><span class="line">daemon --user maui -&gt; daemon --user root</span><br></pre></td></tr></table></figure>
+<img src="7.png"></li>
+<li>启动 Maui ，并设置开机自动启动<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp contrib/service-scripts/redhat.maui.d /etc/init.d/maui</span><br><span class="line">chmod a+x /etc/init.d/maui</span><br><span class="line">chkconfig maui on</span><br><span class="line">systemctl enable maui #开机启动</span><br><span class="line">/etc/init.d/maui start #启动</span><br></pre></td></tr></table></figure></li>
+<li>相关命令</li>
+</ol>
+<ul>
+<li>&#x2F;etc&#x2F;init.d&#x2F;maui  start      #启动maui</li>
+<li>&#x2F;etc&#x2F;init.d&#x2F;maui  status     #查看maui开启状态</li>
+<li>&#x2F;etc&#x2F;init.d&#x2F;maui  restart    #重启maui</li>
+<li>&#x2F;etc&#x2F;init.d&#x2F;maui  stop       #停止maui</li>
+</ul>
+<h1 id="可能遇到的问题"><a href="#可能遇到的问题" class="headerlink" title="可能遇到的问题"></a>可能遇到的问题</h1><ul>
+<li>pbsnodes: Server has no node list MSG&#x3D;node list is empty - check ‘server_priv&#x2F;nodes’ file<br>用 qterm 之后重启服务</li>
+</ul>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><ol>
+<li>控制节点和计算节点都关机重启，注意顺序</li>
+<li>看到进程<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ps -e | grep 进程名字</span><br></pre></td></tr></table></figure>
+<img src="8.png"><br><img src="9.png"></li>
+<li>设置队列<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">qmgr -c &quot;create queue bigmem queue_type=execution&quot;</span><br><span class="line">qmgr -c &quot;set queue bigmem enabled = True&quot;</span><br><span class="line">qmgr -c &quot;set queue bigmem started = True&quot; #我这里设置的队列名字是 bigmem</span><br></pre></td></tr></table></figure></li>
+<li>使用 VASP 进行测试</li>
+<li>准备好 VASP文件和提交任务脚本<br><img src="10.png"><br><img src="11.png"></li>
+<li>设置好 VSAP 和 Intel oneAPI 的环境变量，可以参考：<a href="/2024/03/20/Centos8-stream%E5%AE%89%E8%A3%85VASP-2024-Intel-oneAPI/" title="Centos8 stream安装VASP--2024 Intel oneAPI">Centos8 stream安装 VASP 2024 Intel oneAPI</a></li>
+<li>由于我的 VASP 安装在 &#x2F;opt 下面 所以我需要将 node1 的&#x2F;opt 挂载到master的 &#x2F;opt 下面，具体方法参考：<a href="/2024/03/22/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（二）">Centos8集群Torque作业管理系统安装（二）</a></li>
+<li>完成后就可以提交任务。<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">qsub workVasp.pbs</span><br></pre></td></tr></table></figure>
+<img src="13.png"><br><img src="14.png"><br><img src="12.png"><br>可以看到计算成功，表明我们的Torque作业管理系统安装成功。</li>
+</ol>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/387947448" title="Centos7+Torque+Maui安装">Centos7+Torque+Maui安装</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/201400741" title="Centos 7 或 Centos 8 下集群服务器 Torque作业管理系统的安装（小白专用）">Centos 7 或 Centos 8 下集群服务器 Torque作业管理系统的安装（小白专用）</a></li>
+<li><a target="_blank" rel="noopener" href="https://gist.github.com/wangxianhe/1236d22319ddff6b42b1dcfc7f60eac7" title="CentOS 7 高性能计算（HPC）集群搭建过程">CentOS 7 高性能计算（HPC）集群搭建过程</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012460749/article/details/78583026" title="Centos7安装-多节点Torque">Centos7安装-多节点Torque</a></li>
+<li><a target="_blank" rel="noopener" href="http://bbs.keinsci.com/thread-20943-1-1.html" title="CentOS下安装PBS+maui教程">CentOS下安装PBS+maui教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2158787" title="Centos7安装-多节点Torque">Centos7安装-多节点Torque</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://haharcher1.github.io">爱吃铜锣烧的哆啦酱</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://haharcher1.github.io/2024/03/23/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E5%9B%9B%EF%BC%89/">https://haharcher1.github.io/2024/03/23/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E5%9B%9B%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://haharcher1.github.io" target="_blank">哆啦酱的点心屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/Centos8-stream/">Centos8 stream</a><a class="post-meta__tags" href="/tags/Torque/">Torque</a></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_imagesc5366469b00940f5b8077c20c2c2d089.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/03/23/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%89%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（三）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images40ff251e2a5c4764b2f59513fbdd8c81.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Centos8集群Torque作业管理系统安装（三）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/03/20/Centos8-stream%E5%AE%89%E8%A3%85VASP-2024-Intel-oneAPI/" title="Centos8 stream安装VASP--2024 Intel oneAPI"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_imagesa9982f7441bd4e07a3b1a26af43457d9.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-20</div><div class="title">Centos8 stream安装VASP--2024 Intel oneAPI</div></div></a></div><div><a href="/2024/03/22/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%80%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（一）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images7e4afde0d80946dea5898e2dfa559b81.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-22</div><div class="title">Centos8集群Torque作业管理系统安装（一）</div></div></a></div><div><a href="/2024/03/23/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%89%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（三）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images40ff251e2a5c4764b2f59513fbdd8c81.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-23</div><div class="title">Centos8集群Torque作业管理系统安装（三）</div></div></a></div><div><a href="/2024/03/22/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（二）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images01217514880511ebb6edd017c2d2eca2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-22</div><div class="title">Centos8集群Torque作业管理系统安装（二）</div></div></a></div><div><a href="/2024/03/20/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Centos8-stream%E4%BB%A5%E5%8F%8A%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE/" title="虚拟机安装Centos8 stream以及网络配置"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images45663c9f2ce54eb2ae8628efb0c43390.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-20</div><div class="title">虚拟机安装Centos8 stream以及网络配置</div></div></a></div><div><a href="/2024/03/21/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E7%BD%91%E7%BB%9C%E7%B1%BB%E5%9E%8B%E5%92%8C%E9%9D%99%E6%80%81ip%E7%9A%84%E8%AE%BE%E7%BD%AE/" title="虚拟机的网络类型和静态ip的设置"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_imagesc85ca642880411ebb6edd017c2d2eca2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-21</div><div class="title">虚拟机的网络类型和静态ip的设置</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">爱吃铜锣烧的哆啦酱</div><div class="author-info__description">好饿好饿好饿，我真的好饿！</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hahArcher1"><i class="fab fa-github"></i><span>订阅我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hahArcher1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到哆啦酱的点心屋！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">背景介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Torque-%E4%BD%9C%E4%B8%9A%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%90%AD%E5%BB%BA"><span class="toc-number">2.</span> <span class="toc-text">Torque 作业系统的搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">2.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-number">2.2.</span> <span class="toc-text">注意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">2.3.</span> <span class="toc-text">基本信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E8%8A%82%E7%82%B9%E5%92%8C%E8%AE%A1%E7%AE%97%E8%8A%82%E7%82%B9%E7%9A%84%E5%85%B1%E5%90%8C%E9%85%8D%E7%BD%AE"><span class="toc-number">2.4.</span> <span class="toc-text">控制节点和计算节点的共同配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E8%8A%82%E7%82%B9%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">2.5.</span> <span class="toc-text">控制节点的配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E8%8A%82%E7%82%B9%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="toc-number">2.6.</span> <span class="toc-text">计算节点的配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%90%AF%E4%BD%9C%E4%B8%9A%E8%B0%83%E5%BA%A6%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.7.</span> <span class="toc-text">重启作业调度系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="toc-number">2.8.</span> <span class="toc-text">相关命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Maui%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">3.</span> <span class="toc-text">Maui的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-1"><span class="toc-number">3.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F-1"><span class="toc-number">3.2.</span> <span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">可能遇到的问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-number">5.</span> <span class="toc-text">测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/03/23/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E5%9B%9B%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（四）"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_imagesc5366469b00940f5b8077c20c2c2d089.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Centos8集群Torque作业管理系统安装（四）"/></a><div class="content"><a class="title" href="/2024/03/23/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E5%9B%9B%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（四）">Centos8集群Torque作业管理系统安装（四）</a><time datetime="2024-03-23T02:46:47.000Z" title="发表于 2024-03-23 10:46:47">2024-03-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/23/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%89%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（三）"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images40ff251e2a5c4764b2f59513fbdd8c81.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Centos8集群Torque作业管理系统安装（三）"/></a><div class="content"><a class="title" href="/2024/03/23/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%89%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（三）">Centos8集群Torque作业管理系统安装（三）</a><time datetime="2024-03-23T01:03:38.000Z" title="发表于 2024-03-23 09:03:38">2024-03-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/22/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（二）"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images01217514880511ebb6edd017c2d2eca2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Centos8集群Torque作业管理系统安装（二）"/></a><div class="content"><a class="title" href="/2024/03/22/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（二）">Centos8集群Torque作业管理系统安装（二）</a><time datetime="2024-03-22T14:00:43.000Z" title="发表于 2024-03-22 22:00:43">2024-03-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/22/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%80%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（一）"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images7e4afde0d80946dea5898e2dfa559b81.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Centos8集群Torque作业管理系统安装（一）"/></a><div class="content"><a class="title" href="/2024/03/22/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%80%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（一）">Centos8集群Torque作业管理系统安装（一）</a><time datetime="2024-03-22T10:17:42.000Z" title="发表于 2024-03-22 18:17:42">2024-03-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/22/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Linux常用命令"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images5268d877a2a04864b36b4961ab793f4f.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux常用命令"/></a><div class="content"><a class="title" href="/2024/03/22/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" title="Linux常用命令">Linux常用命令</a><time datetime="2024-03-22T09:12:26.000Z" title="发表于 2024-03-22 17:12:26">2024-03-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By 爱吃铜锣烧的哆啦酱</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来到哆啦酱的点心屋！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: '1e6e2f537e19cc631780',
+      clientSecret: '247d7fcfdc71454a3a9dba4ae26d333c83219710',
+      repo: 'hahArcher1.github.io',
+      owner: 'hahArcher1',
+      admin: ['hahArcher1'],
+      id: '58a7fce936b169dbc31fcbad5f0ffd6d',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
