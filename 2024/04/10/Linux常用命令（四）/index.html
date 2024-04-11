@@ -1,0 +1,433 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Linux常用命令（四） | 哆啦酱的点心屋</title><meta name="author" content="爱吃铜锣烧的哆啦酱"><meta name="copyright" content="爱吃铜锣烧的哆啦酱"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="网络管理网络接口名称规则 网卡命名规则可以参考：Linux中网卡的命名规则，CentOS7网卡命名规则 网卡文件：&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-enp0s3 网卡名称：enp0s3，有多少张网卡，就有多少个网卡文件  NetworkManager服务 网络管理器(NetworkManager)是一个动态网络的控制器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用命令（四）">
+<meta property="og:url" content="https://haharcher1.github.io/2024/04/10/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E5%9B%9B%EF%BC%89/index.html">
+<meta property="og:site_name" content="哆啦酱的点心屋">
+<meta property="og:description" content="网络管理网络接口名称规则 网卡命名规则可以参考：Linux中网卡的命名规则，CentOS7网卡命名规则 网卡文件：&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-enp0s3 网卡名称：enp0s3，有多少张网卡，就有多少个网卡文件  NetworkManager服务 网络管理器(NetworkManager)是一个动态网络的控制器">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images97b97ee1173042d5ba667df7ecbe43f6.png">
+<meta property="article:published_time" content="2024-04-10T15:07:48.000Z">
+<meta property="article:modified_time" content="2024-04-11T07:53:03.813Z">
+<meta property="article:author" content="爱吃铜锣烧的哆啦酱">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images97b97ee1173042d5ba667df7ecbe43f6.png"><link rel="shortcut icon" href="/img/favicon2.png"><link rel="canonical" href="https://haharcher1.github.io/2024/04/10/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E5%9B%9B%EF%BC%89/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux常用命令（四）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-11 15:53:03'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.1.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page child" href="/download/"><i class="fa-fw fas fa-download"></i><span> 资源</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images97b97ee1173042d5ba667df7ecbe43f6.png')"><nav id="nav"><span id="blog-info"><a href="/" title="哆啦酱的点心屋"><span class="site-name">哆啦酱的点心屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page child" href="/download/"><i class="fa-fw fas fa-download"></i><span> 资源</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux常用命令（四）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-10T15:07:48.000Z" title="发表于 2024-04-10 23:07:48">2024-04-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-11T07:53:03.813Z" title="更新于 2024-04-11 15:53:03">2024-04-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">技术学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Linux常用命令（四）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h2><h3 id="网络接口名称规则"><a href="#网络接口名称规则" class="headerlink" title="网络接口名称规则"></a>网络接口名称规则</h3><ul>
+<li>网卡命名规则可以参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/MssGuo/article/details/117432536" title="Linux中网卡的命名规则">Linux中网卡的命名规则</a>，<a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/609587" title="CentOS7网卡命名规则">CentOS7网卡命名规则</a></li>
+<li>网卡文件：&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-enp0s3</li>
+<li>网卡名称：enp0s3，有多少张网卡，就有多少个网卡文件</li>
+</ul>
+<h3 id="NetworkManager服务"><a href="#NetworkManager服务" class="headerlink" title="NetworkManager服务"></a>NetworkManager服务</h3><ul>
+<li>网络管理器(NetworkManager)是一个动态网络的控制器与配置系统，它用于当网络设备可用时保持设备和连接开启并激活</li>
+<li>默认centos7&#x2F;RHEL7已安装网络管理器，并处于开启状态</li>
+<li>网卡可以工作和这个程序有关</li>
+<li>systemctl status NetworkManager #网络的总程序<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# systemctl status NetworkManager</span><br><span class="line">● NetworkManager.service - Network Manager</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/NetworkManager.service; enabled; vendor preset: enabled)</span><br><span class="line">   Active: active (running) since Wed 2024-04-10 13:53:46 CST; 1 weeks 1 days ago</span><br><span class="line">     Docs: man:NetworkManager(8)</span><br><span class="line"> Main PID: 715 (NetworkManager)</span><br><span class="line">   CGroup: /system.slice/NetworkManager.service</span><br><span class="line">           └─715 /usr/sbin/NetworkManager --no-daemon</span><br><span class="line"></span><br><span class="line">Apr 10 13:53:47 localhost.localdomain NetworkManager[715]: &lt;info&gt;  [1712728427.0311] d...)</span><br><span class="line">Apr 10 13:53:47 localhost.localdomain NetworkManager[715]: &lt;info&gt;  [1712728427.0317] d...)</span><br><span class="line">Apr 10 13:53:47 localhost.localdomain NetworkManager[715]: &lt;info&gt;  [1712728427.0323] d...)</span><br><span class="line">Apr 10 13:53:47 localhost.localdomain NetworkManager[715]: &lt;info&gt;  [1712728427.0326] m...L</span><br><span class="line">Apr 10 13:53:47 localhost.localdomain NetworkManager[715]: &lt;info&gt;  [1712728427.0487] m...E</span><br><span class="line">Apr 10 13:53:47 localhost.localdomain NetworkManager[715]: &lt;info&gt;  [1712728427.0488] p...S</span><br><span class="line">Apr 10 13:53:47 localhost.localdomain NetworkManager[715]: &lt;info&gt;  [1712728427.0529] d....</span><br><span class="line">Apr 10 13:53:47 localhost.localdomain NetworkManager[715]: &lt;info&gt;  [1712728427.0534] m...L</span><br><span class="line">Apr 10 13:53:47 localhost.localdomain NetworkManager[715]: &lt;info&gt;  [1712728427.0537] m...e</span><br><span class="line">Apr 10 13:53:48 localhost.localdomain NetworkManager[715]: &lt;info&gt;  [1712728428.3807] p...S</span><br><span class="line">Hint: Some lines were ellipsized, use -l to show in full.</span><br></pre></td></tr></table></figure></li>
+<li>systemctl status network #网络的子程序<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# systemctl status network</span><br><span class="line">● network.service - LSB: Bring up/down networking</span><br><span class="line">   Loaded: loaded (/etc/rc.d/init.d/network; bad; vendor preset: disabled)</span><br><span class="line">   Active: active (exited) since Wed 2024-04-10 13:53:47 CST; 1 weeks 1 days ago</span><br><span class="line">     Docs: man:systemd-sysv-generator(8)</span><br><span class="line"></span><br><span class="line">Apr 10 13:53:47 localhost.localdomain systemd[1]: Starting LSB: Bring up/down networki....</span><br><span class="line">Apr 10 13:53:47 localhost.localdomain network[860]: Bringing up loopback interface:  [...]</span><br><span class="line">Apr 10 13:53:47 localhost.localdomain network[860]: Bringing up interface enp0s3:  [  ...]</span><br><span class="line">Apr 10 13:53:47 localhost.localdomain systemd[1]: Started LSB: Bring up/down networking.</span><br><span class="line">Hint: Some lines were ellipsized, use -l to show in full.</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="配置网络的工具"><a href="#配置网络的工具" class="headerlink" title="配置网络的工具"></a>配置网络的工具</h3><ul>
+<li>图形界面网络配置</li>
+<li>命令行配置<ul>
+<li>配置文件：vim<ul>
+<li>vim &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-enp0s3</li>
+</ul>
+</li>
+<li>命令行：nmcli<ul>
+<li>如果没有可以安装：yum -y install NetworkManager</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>图形配置<ul>
+<li>简易图形：nmtui</li>
+<li>图形界面：nm-connection-editor</li>
+</ul>
+</li>
+</ul>
+<h3 id="配置网络参数"><a href="#配置网络参数" class="headerlink" title="配置网络参数"></a>配置网络参数</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">TYPE=&quot;Ethernet&quot;</span><br><span class="line">PROXY_METHOD=&quot;none&quot;</span><br><span class="line">BROWSER_ONLY=&quot;no&quot;</span><br><span class="line">BOOTPROTO=&quot;static&quot; #获取ip地址的方式(自动，手动)</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">boot 启动</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">protocol 协议</span></span><br><span class="line">1. dhcp 自动（动态主机配置协议）</span><br><span class="line">2. none 手动</span><br><span class="line">3. static 静态</span><br><span class="line">DEFROUTE=&quot;yes&quot;</span><br><span class="line">IPV4_FAILURE_FATAL=&quot;no&quot;</span><br><span class="line">IPV6INIT=&quot;yes&quot;</span><br><span class="line">IPV6_AUTOCONF=&quot;yes&quot;</span><br><span class="line">IPV6_DEFROUTE=&quot;yes&quot;</span><br><span class="line">IPV6_FAILURE_FATAL=&quot;no&quot;</span><br><span class="line">IPV6_ADDR_GEN_MODE=&quot;stable-privacy&quot;</span><br><span class="line">NAME=&quot;enp0s3&quot; #网卡名</span><br><span class="line">UUID=&quot;baccb250-8bcb-4d43-af23-877eecfb2b74&quot;#网卡的id号</span><br><span class="line">DEVICE=&quot;enp0s3&quot; #网卡名</span><br><span class="line">ONBOOT=&quot;yes&quot; #是否开机自启动</span><br><span class="line">IPADDR=&quot;172.16.34.150&quot; #ip地址，其是一台主机在网络中的标识，同一个网段可以直接通信</span><br><span class="line">NETMASK=&quot;255.255.255.0&quot; #子网掩码，用来确定网段和主机号</span><br><span class="line">GATEWAY=&quot;172.16.34.1&quot;#网关，也叫默认路由，路由器或者三级交换机的地址，出网用的</span><br><span class="line">DNS1=&quot;114.114.114.114&quot;#DNS服务器的地址</span><br><span class="line">DNS2=&quot;8.8.8.8&quot;#DNS服务器的地址</span><br></pre></td></tr></table></figure>
+<h3 id="查看ip地址"><a href="#查看ip地址" class="headerlink" title="查看ip地址"></a>查看ip地址</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ip a</span><br><span class="line">[root@localhost ~]# ip a</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP group default qlen 1000</span><br><span class="line">    link/ether 08:00:27:47:34:99 brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 172.16.34.150/24 brd 172.16.34.255 scope global noprefixroute enp0s3</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 2400:dd01:102e:34:9950:438b:92ce:a5a2/64 scope global noprefixroute dynamic </span><br><span class="line">       valid_lft 2591908sec preferred_lft 604708sec</span><br><span class="line">    inet6 fe80::649e:1963:25da:ce15/64 scope link noprefixroute </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+<h3 id="主机名"><a href="#主机名" class="headerlink" title="主机名"></a>主机名</h3><p>主机名用来区别主机</p>
+<ul>
+<li>查看主机名<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hostname</span><br><span class="line">[root@localhost ~]# hostname</span><br><span class="line">localhost.localdomain</span><br><span class="line">[root@localhost ~]# </span><br></pre></td></tr></table></figure></li>
+<li>配置主机名<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hostnamectl set-hostname master</span><br></pre></td></tr></table></figure></li>
+<li>查看和配置主机名<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/hostname</span><br><span class="line">master</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="网络测试工具"><a href="#网络测试工具" class="headerlink" title="网络测试工具"></a>网络测试工具</h3><ul>
+<li>测试工具<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ip a #查看ip</span><br><span class="line">ip route #查看路由，查看网关</span><br><span class="line">ip neigh #查看邻居</span><br><span class="line">ping 网址 #查看这个网址通不通 ping(Packet Internet Groper)，因特网包探索</span><br><span class="line">ping 127.0.0.1 #ping自己</span><br></pre></td></tr></table></figure></li>
+<li>端口和服务<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ss -tnl #展示TCP的套接字，show TCP socket，ss #查看网络状态，t表示TCP，n表示数字，l表示列出来</span><br><span class="line">[root@localhost ~]# ss -tnl</span><br><span class="line">State      Recv-Q Send-Q Local Address:Port               Peer Address:Port              </span><br><span class="line">LISTEN     0      128               *:22                            *:*                  </span><br><span class="line">LISTEN     0      100       127.0.0.1:25                            *:*                  </span><br><span class="line">LISTEN     0      128            [::]:22                         [::]:*                  </span><br><span class="line">LISTEN     0      100           [::1]:25                         [::]:* </span><br></pre></td></tr></table></figure>
+port 就是端口号，端口号用于区分进程，端口号是唯一的从：0-65535</li>
+</ul>
+<h3 id="初始化服务器"><a href="#初始化服务器" class="headerlink" title="初始化服务器"></a>初始化服务器</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">关闭selinux 防火墙</span><br><span class="line">setenforce 0 #临时关闭</span><br><span class="line">vim /etc/sysconfig/selinux #永久关闭</span><br><span class="line">SELINUX=disabled</span><br></pre></td></tr></table></figure>
+<h3 id="通信模型"><a href="#通信模型" class="headerlink" title="通信模型"></a>通信模型</h3><h4 id="OSI模型"><a href="#OSI模型" class="headerlink" title="OSI模型"></a>OSI模型</h4><ul>
+<li>简介<ul>
+<li><strong>OSI</strong>：Open System Interconnection 开放系统互联模型</li>
+<li>开放式系统互联<ul>
+<li>国际标准化组织(ISO)制定</li>
+<li>定义了不同计算机互联的标准</li>
+<li>设计和描述计算机网络通信的框架</li>
+<li>全世界网络通信工作分为7层</li>
+<li>制定OSI的优势<ul>
+<li>开放</li>
+<li>厂商兼容</li>
+<li>易于理解和学习</li>
+<li>模块化工程</li>
+<li>故障排除</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>OSI7层次结构&#x2F;功能<ul>
+<li><strong>应用层</strong>：应用程序，如qq，微信，爱奇艺，由应用程序产生原始数据</li>
+<li><strong>表示层</strong>：对原始数据采用什么格式，压缩，加密，对数据进行安全快速传递</li>
+<li><strong>会话层</strong>：会话，全双工&#x2F;半双工通信，双工指得是双方通信，全双工通信例如电话，两边都可以同时通信。半双工指得是同时只能一方传递信息，如对讲机。同时关注会话信息，如身份信息</li>
+<li><strong>传输层</strong>：&#x2F;分段&#x2F;重组&#x2F;端口号，提升传输效率。分段指得是把数据拆成一段一段的，重组指得是将分段的数据按顺序重新组合，确定端口号。</li>
+<li><strong>网络层</strong>：IP地址&#x2F;寻址&#x2F;路由，为数据加上IP地址，寻址路由，指引数据的传递方向</li>
+<li><strong>数据链路层</strong>：MAC地址&#x2F;局域网，加上MAC地址，负责局域网的数据传递</li>
+<li><strong>物理层</strong>：传输介质&#x2F;比特流，利用电流&#x2F;光&#x2F;无线信号等进行传输</li>
+<li><strong>记忆的方式</strong>：应聘者的表格会传到您的树屋里，应表会传网数物</li>
+</ul>
+</li>
+<li>TCO&#x2F;IP5层结构&#x2F;功能<ul>
+<li><strong>应用层</strong>：应用层，表示层和会话层组合在一起<ul>
+<li>应用程序，如qq，微信，爱奇艺，由应用程序产生原始数据</li>
+<li>对原始数据采用什么格式，压缩，加密，对数据进行安全快速传递</li>
+<li>会话，全双工&#x2F;半双工通信，双工指得是双方通信，全双工通信例如电话，两边都可以同时通信。半双工指得是同时只能一方传递信息，如对讲机。同时关注会话信息，如身份信息</li>
+</ul>
+</li>
+<li><strong>传输层</strong>：&#x2F;分段&#x2F;重组&#x2F;端口号，提升传输效率。分段指得是把数据拆成一段一段的，重组指得是将分段的数据按顺序重新组合，确定端口号。</li>
+<li><strong>网络层</strong>：IP地址&#x2F;寻址&#x2F;路由，为数据加上IP地址，寻址路由，指引数据的传递方向</li>
+<li><strong>数据链路层</strong>：MAC地址&#x2F;局域网，加上MAC地址，负责局域网的数据传递</li>
+<li><strong>物理层</strong>：传输介质&#x2F;比特流，利用电流&#x2F;光&#x2F;无线信号等进行传输</li>
+</ul>
+</li>
+<li>TCO&#x2F;IP4层结构&#x2F;功能<ul>
+<li><strong>应用层</strong>：应用层，表示层和会话层组合在一起<ul>
+<li>应用程序，如qq，微信，爱奇艺，由应用程序产生原始数据</li>
+<li>对原始数据采用什么格式，压缩，加密，对数据进行安全快速传递</li>
+<li>会话，全双工&#x2F;半双工通信，双工指得是双方通信，全双工通信例如电话，两边都可以同时通信。半双工指得是同时只能一方传递信息，如对讲机。同时关注会话信息，如身份信息</li>
+</ul>
+</li>
+<li><strong>传输层</strong>：&#x2F;分段&#x2F;重组&#x2F;端口号，提升传输效率。分段指得是把数据拆成一段一段的，重组指得是将分段的数据按顺序重新组合，确定端口号。</li>
+<li><strong>网络层</strong>：IP地址&#x2F;寻址&#x2F;路由，为数据加上IP地址，寻址路由，指引数据的传递方向</li>
+<li><strong>网络接口层</strong>：数据链路层和物理层结合在一起<ul>
+<li>MAC地址&#x2F;局域网，加上MAC地址，负责局域网的数据传递</li>
+<li>传输介质&#x2F;比特流，利用电流&#x2F;光&#x2F;无线信号等进行传输</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>OSI模型和TCP&#x2F;IP模型的区别<ul>
+<li><strong>OSI</strong><ul>
+<li>推出时间早</li>
+<li>只有理论，没有实践</li>
+</ul>
+</li>
+<li><strong>TCP&#x2F;IP</strong><ul>
+<li>TCP&#x2F;IP：传输控制协议&#x2F;互联网协议(Tranmission Control Protocol&#x2F;Internet Protocol)</li>
+<li>美国军方由时间，总结出来的理论</li>
+<li>当今通信的标准</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>TCP&#x2F;IP数据单元&#x2F;data unit(DU)<ul>
+<li><strong>应用层数据</strong>：应用数据单元，APDU：Application Protocol Data Unit，应用协议数据单元</li>
+<li><strong>传输层数据</strong>：segment DU 分段数据</li>
+<li><strong>网络层数据</strong>：package DU 包数据</li>
+<li><strong>数据链路层数据</strong>：frame DU 帧数据</li>
+<li><strong>物理层数据</strong>：bit DU 比特数据</li>
+</ul>
+</li>
+<li>封装和解封装<ul>
+<li>数据通过网络进行传输，在发送端从高处一层一层向下发送，如果一个主机要传输数据到别的主机，先把数据装到一个特殊协议报头中，这个过程叫封装。</li>
+<li>简介：<ul>
+<li>信息从一台计算机产生，经过TCP&#x2F;IP模型嘉庚。后传输到另一台计算机</li>
+<li>这个通信过程就像，快递从厂家包装到顾客收到货物拆包一样</li>
+<li>我们把这个通信过程，称作数据的封装（发送）和数据解封装（接收）。</li>
+</ul>
+</li>
+<li><strong>应用层</strong>：应用层，表示层和会话层组合在一起<ul>
+<li>应用程序，如qq，微信，爱奇艺，由应用程序产生原始数据</li>
+<li>对原始数据采用什么格式，压缩，加密，对数据进行安全快速传递</li>
+<li>会话，全双工&#x2F;半双工通信，双工指得是双方通信，全双工通信例如电话，两边都可以同时通信。半双工指得是同时只能一方传递信息，如对讲机。同时关注会话信息，如身份信息</li>
+</ul>
+</li>
+<li><strong>传输层</strong>：&#x2F;分段&#x2F;重组&#x2F;端口号，提升传输效率。分段指得是把数据拆成一段一段的，重组指得是将分段的数据按顺序重新组合，确定端口号。</li>
+<li><strong>网络层</strong>：IP地址&#x2F;寻址&#x2F;路由，为数据加上IP地址，寻址路由，指引数据的传递方向</li>
+<li><strong>数据链路层</strong>：MAC地址&#x2F;局域网，加上MAC地址，负责局域网的数据传递</li>
+<li><strong>物理层</strong>：传输介质&#x2F;比特流，利用电流&#x2F;光&#x2F;无线信号等进行传输</li>
+<li>数据封装的过程大致如下<ol>
+<li>（应用层）用户信息转换为数据，以便在网络上传输</li>
+<li>（传输层）数据转换为数据段，并在发送方和接收方主机之间建立一条可靠的连接</li>
+<li>（网络层）数据段转化为数据包或者数据报，并在报头上放上逻辑地址，这样每一个数据包都可以通过互联网进行传输</li>
+<li>（数据链路层）数据包或数据报转化为数据帧，以便在本地网络中传输。在本地网段上，使用硬件地址唯一标识每台主机</li>
+<li>（物理层）：数据帧转化为比特列，并采用数字编码和时钟方案进行传输</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="TCP-IP协议族"><a href="#TCP-IP协议族" class="headerlink" title="TCP&#x2F;IP协议族"></a>TCP&#x2F;IP协议族</h4><ul>
+<li><strong>TCP&#x2F;IP简介</strong><ul>
+<li>TCP&#x2F;IP：传输控制协议&#x2F;互联网协议(Tranmission Control Protocol&#x2F;Internet Protocol)</li>
+</ul>
+</li>
+<li>5层模型协议分类<ul>
+<li><strong>应用层</strong><ul>
+<li><strong>HTTP</strong>：超文本传输协议&#x2F;网站，如淘宝</li>
+<li><strong>Telnet</strong>：远程连接协议&#x2F;远程控制，如QQ远程桌面</li>
+<li><strong>FTP</strong>：文件传输协议，如电影天堂</li>
+<li><strong>SMTP</strong>：简单邮件传输协议&#x2F;Email，如QQ邮箱</li>
+<li><strong>DNS</strong>：域名服务&#x2F;WWW，如baiyun.com</li>
+</ul>
+</li>
+<li><strong>传输层</strong><ul>
+<li>TCP&#x2F;传输控制协议&#x2F;可靠</li>
+<li>UDP&#x2F;用户数据报协议&#x2F;不可靠</li>
+</ul>
+</li>
+<li><strong>网络层</strong><ul>
+<li>IP&#x2F;互联网协议&#x2F;寻址</li>
+<li>ICMP&#x2F;网络消息管理协议</li>
+</ul>
+</li>
+<li><strong>数据链路层</strong><ul>
+<li>MAC</li>
+</ul>
+</li>
+<li><strong>物理层</strong><ul>
+<li>网线</li>
+<li>光纤</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pz4y1D73n?p=29&vd_source=4470be84aba61145fe9d1690fe726951" title="千锋云计算Linux教程650集，linux系统运维从入门到精通教程（Linux安装极速入门，零基础必备）">千锋云计算Linux教程650集，linux系统运维从入门到精通教程（Linux安装极速入门，零基础必备）</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/MssGuo/article/details/117432536" title="Linux中网卡的命名规则">Linux中网卡的命名规则</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/609587" title="CentOS7网卡命名规则">CentOS7网卡命名规则</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://haharcher1.github.io">爱吃铜锣烧的哆啦酱</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://haharcher1.github.io/2024/04/10/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E5%9B%9B%EF%BC%89/">https://haharcher1.github.io/2024/04/10/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E5%9B%9B%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://haharcher1.github.io" target="_blank">哆啦酱的点心屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images97b97ee1173042d5ba667df7ecbe43f6.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/04/10/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E4%B8%89%EF%BC%89/" title="Linux常用命令（三）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_imagescbcf05e9ea98488cba2a416bb33f1bbe.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Linux常用命令（三）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/03/20/Centos8-stream%E5%AE%89%E8%A3%85VASP-2024-Intel-oneAPI/" title="Centos8 stream安装VASP--2024 Intel oneAPI"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_imagesa9982f7441bd4e07a3b1a26af43457d9.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-20</div><div class="title">Centos8 stream安装VASP--2024 Intel oneAPI</div></div></a></div><div><a href="/2024/03/28/Centos8%E9%9B%86%E7%BE%A4Slurm%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%80%EF%BC%89/" title="Centos8集群Slurm作业管理系统安装（一）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images61ac5e440dac4d97a6624e05044c4074.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-28</div><div class="title">Centos8集群Slurm作业管理系统安装（一）</div></div></a></div><div><a href="/2024/03/28/Centos8%E9%9B%86%E7%BE%A4Slurm%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%89%EF%BC%89/" title="Centos8集群Slurm作业管理系统安装（三）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images96b26df8437c44e899f67d2fee4777ae.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-28</div><div class="title">Centos8集群Slurm作业管理系统安装（三）</div></div></a></div><div><a href="/2024/03/28/Centos8%E9%9B%86%E7%BE%A4Slurm%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Centos8集群Slurm作业管理系统安装（二）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images6a17c887d6054e798c9c88f4ca76f932.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-28</div><div class="title">Centos8集群Slurm作业管理系统安装（二）</div></div></a></div><div><a href="/2024/03/22/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%80%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（一）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images7e4afde0d80946dea5898e2dfa559b81.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-22</div><div class="title">Centos8集群Torque作业管理系统安装（一）</div></div></a></div><div><a href="/2024/03/23/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%89%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（三）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images40ff251e2a5c4764b2f59513fbdd8c81.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-23</div><div class="title">Centos8集群Torque作业管理系统安装（三）</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">爱吃铜锣烧的哆啦酱</div><div class="author-info__description">好饿好饿好饿，我真的好饿！</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hahArcher1"><i class="fab fa-github"></i><span>订阅我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hahArcher1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到哆啦酱的点心屋！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">网络管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3%E5%90%8D%E7%A7%B0%E8%A7%84%E5%88%99"><span class="toc-number">1.1.</span> <span class="toc-text">网络接口名称规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NetworkManager%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.2.</span> <span class="toc-text">NetworkManager服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-number">1.3.</span> <span class="toc-text">配置网络的工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C%E5%8F%82%E6%95%B0"><span class="toc-number">1.4.</span> <span class="toc-text">配置网络参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bip%E5%9C%B0%E5%9D%80"><span class="toc-number">1.5.</span> <span class="toc-text">查看ip地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E5%90%8D"><span class="toc-number">1.6.</span> <span class="toc-text">主机名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="toc-number">1.7.</span> <span class="toc-text">网络测试工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.8.</span> <span class="toc-text">初始化服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.9.</span> <span class="toc-text">通信模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#OSI%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.9.1.</span> <span class="toc-text">OSI模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCP-IP%E5%8D%8F%E8%AE%AE%E6%97%8F"><span class="toc-number">1.9.2.</span> <span class="toc-text">TCP&#x2F;IP协议族</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number"></span> <span class="toc-text">参考</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/04/10/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E5%9B%9B%EF%BC%89/" title="Linux常用命令（四）"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images97b97ee1173042d5ba667df7ecbe43f6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux常用命令（四）"/></a><div class="content"><a class="title" href="/2024/04/10/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E5%9B%9B%EF%BC%89/" title="Linux常用命令（四）">Linux常用命令（四）</a><time datetime="2024-04-10T15:07:48.000Z" title="发表于 2024-04-10 23:07:48">2024-04-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/10/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E4%B8%89%EF%BC%89/" title="Linux常用命令（三）"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_imagescbcf05e9ea98488cba2a416bb33f1bbe.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux常用命令（三）"/></a><div class="content"><a class="title" href="/2024/04/10/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E4%B8%89%EF%BC%89/" title="Linux常用命令（三）">Linux常用命令（三）</a><time datetime="2024-04-10T01:20:48.000Z" title="发表于 2024-04-10 09:20:48">2024-04-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/09/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Linux常用命令（二）"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images0639b8855aab4dcbb827a9884e8ec57d.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux常用命令（二）"/></a><div class="content"><a class="title" href="/2024/04/09/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Linux常用命令（二）">Linux常用命令（二）</a><time datetime="2024-04-09T01:10:49.000Z" title="发表于 2024-04-09 09:10:49">2024-04-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/28/Centos8%E9%9B%86%E7%BE%A4Slurm%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%89%EF%BC%89/" title="Centos8集群Slurm作业管理系统安装（三）"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images96b26df8437c44e899f67d2fee4777ae.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Centos8集群Slurm作业管理系统安装（三）"/></a><div class="content"><a class="title" href="/2024/03/28/Centos8%E9%9B%86%E7%BE%A4Slurm%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%89%EF%BC%89/" title="Centos8集群Slurm作业管理系统安装（三）">Centos8集群Slurm作业管理系统安装（三）</a><time datetime="2024-03-28T14:42:14.000Z" title="发表于 2024-03-28 22:42:14">2024-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/28/Centos8%E9%9B%86%E7%BE%A4Slurm%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Centos8集群Slurm作业管理系统安装（二）"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images6a17c887d6054e798c9c88f4ca76f932.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Centos8集群Slurm作业管理系统安装（二）"/></a><div class="content"><a class="title" href="/2024/03/28/Centos8%E9%9B%86%E7%BE%A4Slurm%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Centos8集群Slurm作业管理系统安装（二）">Centos8集群Slurm作业管理系统安装（二）</a><time datetime="2024-03-28T11:36:23.000Z" title="发表于 2024-03-28 19:36:23">2024-03-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By 爱吃铜锣烧的哆啦酱</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来到哆啦酱的点心屋！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: '1e6e2f537e19cc631780',
+      clientSecret: '247d7fcfdc71454a3a9dba4ae26d333c83219710',
+      repo: 'hahArcher1.github.io',
+      owner: 'hahArcher1',
+      admin: ['hahArcher1'],
+      id: '859f4cc6e4c89c76ca4a1575a416cfe1',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Linux常用命令（三） | 哆啦酱的点心屋</title><meta name="author" content="爱吃铜锣烧的哆啦酱"><meta name="copyright" content="爱吃铜锣烧的哆啦酱"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="取别名alias ls &#x3D; &#x27;ls -l&#x27; #给ls起别名，输入ls 相当于 ls -l 统计cat 1.txt | wc -l #-l统计行数cat 1.txt | wc -c #-l统计字节数cat 1.txt | wc -m #-l统计字符数 下载软件包wget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;epel.repo https:&#x2F;&#x2F;mirrors.aliyun.co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用命令（三）">
+<meta property="og:url" content="https://haharcher1.github.io/2024/04/10/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E4%B8%89%EF%BC%89/index.html">
+<meta property="og:site_name" content="哆啦酱的点心屋">
+<meta property="og:description" content="取别名alias ls &#x3D; &#x27;ls -l&#x27; #给ls起别名，输入ls 相当于 ls -l 统计cat 1.txt | wc -l #-l统计行数cat 1.txt | wc -c #-l统计字节数cat 1.txt | wc -m #-l统计字符数 下载软件包wget -O &#x2F;etc&#x2F;yum.repos.d&#x2F;epel.repo https:&#x2F;&#x2F;mirrors.aliyun.co">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_imagescbcf05e9ea98488cba2a416bb33f1bbe.jpg">
+<meta property="article:published_time" content="2024-04-10T01:20:48.000Z">
+<meta property="article:modified_time" content="2024-04-11T01:51:04.754Z">
+<meta property="article:author" content="爱吃铜锣烧的哆啦酱">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_imagescbcf05e9ea98488cba2a416bb33f1bbe.jpg"><link rel="shortcut icon" href="/img/favicon2.png"><link rel="canonical" href="https://haharcher1.github.io/2024/04/10/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E4%B8%89%EF%BC%89/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux常用命令（三）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-11 09:51:04'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.1.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page child" href="/download/"><i class="fa-fw fas fa-download"></i><span> 资源</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_imagescbcf05e9ea98488cba2a416bb33f1bbe.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="哆啦酱的点心屋"><span class="site-name">哆啦酱的点心屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page child" href="/download/"><i class="fa-fw fas fa-download"></i><span> 资源</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux常用命令（三）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-10T01:20:48.000Z" title="发表于 2024-04-10 09:20:48">2024-04-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-11T01:51:04.754Z" title="更新于 2024-04-11 09:51:04">2024-04-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">技术学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>17分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Linux常用命令（三）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="取别名"><a href="#取别名" class="headerlink" title="取别名"></a>取别名</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">alias ls = &#x27;ls -l&#x27; #给ls起别名，输入ls 相当于 ls -l</span><br></pre></td></tr></table></figure>
+<h2 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat 1.txt | wc -l #-l统计行数</span><br><span class="line">cat 1.txt | wc -c #-l统计字节数</span><br><span class="line">cat 1.txt | wc -m #-l统计字符数</span><br></pre></td></tr></table></figure>
+<h2 id="下载软件包"><a href="#下载软件包" class="headerlink" title="下载软件包"></a>下载软件包</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/epel.repo https://mirrors.aliyun.com/repo/epel-7.repo #-O 指定下载目录</span><br><span class="line">wget url #下载</span><br><span class="line">wget -O 地址 url #下载</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件查找"><a href="#文件查找" class="headerlink" title="文件查找"></a>文件查找</h2><ul>
+<li>简介<ul>
+<li>which：命令查找</li>
+<li>whereis：命令查找，同上</li>
+<li>find：文件查找，针对文件名</li>
+<li>locate：文件查找，依赖数据库</li>
+</ul>
+</li>
+<li>实例</li>
+</ul>
+<ol>
+<li>which&#x2F;whereis<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">which ls #依赖PATH环境变量查找命令</span><br><span class="line">[root@localhost ~]# which ls</span><br><span class="line">alias ls=&#x27;ls --color=auto&#x27;</span><br><span class="line">	/usr/bin/ls</span><br><span class="line">whereis ls</span><br><span class="line">[root@localhost ~]# whereis ls</span><br><span class="line">ls: /usr/bin/ls /usr/share/man/man1/ls.1.gz</span><br></pre></td></tr></table></figure></li>
+<li>locate<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">locate 88888.txt #找不到，需要重启系统因为文件是我刚创建</span><br><span class="line">updatedb #更新数据库</span><br><span class="line">locate 88888.txt</span><br></pre></td></tr></table></figure></li>
+<li>find<br>语法：find [path] [options] [expression] [action]<br>语法：命令  路径   选项       表达式       动作<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">find /etc -name  a.txt</span><br><span class="line">命令  路径  选项  表达式</span><br><span class="line">find /etc -name hosts</span><br><span class="line">find /etc -iname HOSTS #-i 忽略大小写</span><br><span class="line">find /etc -iname hos* #*表示后面的都行，以hos开头就行</span><br><span class="line">find /etc -size +5M # -size 以大小来查找，查找大于5M的文件</span><br><span class="line">find /etc -size 5M # -size 以大小来查找，查找等于5M的文件</span><br><span class="line">find /etc -size -5M # -size 以大小来查找，查找小于5M的文件</span><br><span class="line">[root@localhost ~]# find /etc -size +5M</span><br><span class="line">/etc/udev/hwdb.bin</span><br><span class="line">[root@localhost ~]# ls -h -l /etc/udev/hwdb.bin #-h 人性化显示</span><br><span class="line">-r--r--r--. 1 root root 8.5M Apr  9 13:38 /etc/udev/hwdb.bin</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">按目录深度查找</span></span><br><span class="line">-maxdepth #按目录深度查找</span><br><span class="line">-a #表示and</span><br><span class="line">find / -maxdepth 3 -a -name ifcfg* #在/下的3级目录查找名字以ifcfg开头的</span><br><span class="line">[root@localhost ~]# find / -maxdepth 4 -a -name ifcfg*</span><br><span class="line">/etc/sysconfig/network-scripts/ifcfg-lo</span><br><span class="line">/etc/sysconfig/network-scripts/ifcfg-enp0s3</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按属主，属组查找</span></span><br><span class="line">find /home -user jack #-user 按属主找</span><br><span class="line">find /home -group jack #-user 按属组找</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按文件类型查找</span></span><br><span class="line">find /dev -type b #-type按文件类型查找，</span><br><span class="line">find /dev -type f # f为普通文件</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">按文件权限查找</span></span><br><span class="line">find / -perm 714 -ls# 查看以714为权限的文件 -perm就是按权限 -ls就是动作，功能就是 ls -l</span><br><span class="line">[root@localhost ~]# find . -perm 714 -ls</span><br><span class="line">33574996    0 -rwx--xr--   1 root     root            0 Apr 10 10:22 ./1.txt</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">后处理的动作</span></span><br><span class="line">-print #打印，默认就是-print</span><br><span class="line">-delete #删除</span><br><span class="line">find . -perm 714 -delete #找到后删除</span><br><span class="line">find /etc/ -name ifcfg* -ok cp -rvf &#123;&#125; /tmp \;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-ok 表示后面接参数</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">&#123;&#125;表示前面找到的内容</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-rvf强制递归复制，并显示</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">\; <span class="comment">#表示语句结束</span></span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="文件打包压缩"><a href="#文件打包压缩" class="headerlink" title="文件打包压缩"></a>文件打包压缩</h2><ol>
+<li>简介<br>tar命令是unix&#x2F;linux系统中备份文件的可靠方法，几乎可以工作于任何环境中，它的使用权限是所有用户，建议针对目录</li>
+<li>打包<br>语法： tar 选项 包名 需要打包的文件或文件夹<br>语法：tar -cf etc.tar &#x2F;etc<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -cf etc.tar /etc # -c(create)压缩, -f(file) -f指定文件名 一定要放到末尾</span><br><span class="line">tar -czf etc-gzip.tar.gz /etc # -z 利用gzip工具进行压缩</span><br><span class="line">tar -czvf etc-gzip.tar.gz /etc # -z 利用gzip工具进行压缩，-v可视化</span><br><span class="line">-rw-r--r--. 1 root root  10M Apr 10 11:04 etc-gzip.tar.gz</span><br><span class="line">-rw-r--r--. 1 root root  29M Apr 10 11:01 etc.tar</span><br><span class="line">上述两个的文件大小不一样</span><br><span class="line">-z 用gzip压缩</span><br><span class="line">-j 用bzip2进行压缩.tar.bz</span><br><span class="line">-J 用xzip进行压缩.tar.xz</span><br><span class="line">由上往下体积越来越小，但是压缩时间越来越长</span><br></pre></td></tr></table></figure></li>
+<li>解压<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar  -xvf etc-gzip.tar.gz #解压所有的都可以用这个 </span><br><span class="line">tar  -xzvf etc-gzip.tar.gz #解压缩 -z利用gzip工具进行解压缩 -x表示解压 -v表示可视 -f指定文件名</span><br><span class="line">tar  -xvf etc-gzip.tar.gz -C /tmp #解压到tmp，-C指定路径</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="软件管理"><a href="#软件管理" class="headerlink" title="软件管理"></a>软件管理</h2><h3 id="RPM包"><a href="#RPM包" class="headerlink" title="RPM包"></a>RPM包</h3><ul>
+<li>概述</li>
+</ul>
+<ol>
+<li>RPM Package Manager （原Red HatPackage Manager，现在是一个递归缩写）</li>
+<li>由Red Hat 公司提出，被众多Linux发行版本所采用</li>
+<li>为二进制（binary code）无需编译，可以直接使用</li>
+<li>无法个人设置，开关功能</li>
+<li>软件包实例（注意后缀）：mysql-community-common-5.7-12-1.el7.x86_64.rpm，软件+组件+版本+后缀</li>
+<li>认识RPM包</li>
+</ol>
+<ul>
+<li>zip-3.0-11.el7.x86_64.rpm</li>
+<li>软件名：zip</li>
+<li>版本号：3.0-11</li>
+<li>发布版本（Release8&#x2F;6&#x2F;7）：el7，Enterprise Linux7的缩写</li>
+<li>系统平台(32&#x2F;64)：x86_64</li>
+<li>文件后缀：rpm</li>
+</ul>
+<h3 id="源码包"><a href="#源码包" class="headerlink" title="源码包"></a>源码包</h3><ul>
+<li>概述</li>
+</ul>
+<ol>
+<li>source code 需要通过GCC，C++编译环境编译才可以运行</li>
+<li>可以个人设置，开关功能，配置操作复杂</li>
+<li>软件包实例：nginx-1.8.1.tar.gz</li>
+<li>认识源码包</li>
+</ol>
+<ul>
+<li>nginx：软件名</li>
+<li>1.8.1：版本</li>
+<li>tar.gz：压缩</li>
+</ul>
+<h3 id="RPM包管理"><a href="#RPM包管理" class="headerlink" title="RPM包管理"></a>RPM包管理</h3><h4 id="yum工具"><a href="#yum工具" class="headerlink" title="yum工具"></a>yum工具</h4><ul>
+<li>简介</li>
+</ul>
+<ol>
+<li>yum 全称Yellow dog Updater Modifited</li>
+<li>是一个在Fedora和RedHat以及centos中的shell前段软件管理器</li>
+<li>基于RPM包管理，能够从指定的服务器自动下载RPM包并安装</li>
+<li>可以自动处理依赖关系，并且一次安装所有依赖的软件包，无需繁琐的一个一个安装。</li>
+<li>yum本地源：系统安装的光盘（去哪里下载）</li>
+</ol>
+<ul>
+<li>目的：告诉系统去哪里下载软件，通过系统光盘获得软件包，并安装软件</li>
+<li>观察yum核心配置目录:&#x2F;etc&#x2F;yum.repos.d&#x2F;<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@localhost ~]# ls /etc/yum.repos.d/</span><br><span class="line">CentOS-Base.repo       CentOS-fasttrack.repo  CentOS-Vault.repo</span><br><span class="line">CentOS-CR.repo         CentOS-Media.repo      CentOS-x86_64-kernel.repo</span><br><span class="line">CentOS-Debuginfo.repo  CentOS-Sources.repo</span><br></pre></td></tr></table></figure></li>
+<li>备份官方源，并删除<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rm -rf /etc/yum.repos.d/* </span><br></pre></td></tr></table></figure></li>
+<li>编写本地yum库配置文件<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/yum.repos.d/dvd.repo #名字自己随便取一定要用.repo的后缀名</span><br><span class="line">[dvd] #某一个库的名称，可随便取，中括号[]必须</span><br><span class="line">name=dvd #库的名称的说明，可随便取，name是必须的</span><br><span class="line">baseurl=file:///mnt/cdrom #下载库的具体地址，重要，前//是网页的格式，/mnt指得在在自己的/mnt目录</span><br><span class="line">gpgcheck=0 #是否进行gpg检查，为0表示不需要验证，为1表示需要验证</span><br><span class="line">enable = 0# 表示这个库不能用，等于1表示可以用，默认为1</span><br></pre></td></tr></table></figure></li>
+<li>挂载安装光盘<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">记得把光盘通电插到电脑上</span><br><span class="line">mkdir /mnt/cdrom</span><br><span class="line">mount /dev/cdrom /mnt/cdrom #把光驱挂载到/mnt/cdrom</span><br></pre></td></tr></table></figure></li>
+<li>使用yum安装和卸载程序<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum -y install httpd #安装httpd -y 所有都回答yes</span><br><span class="line">systemctl start httpd</span><br><span class="line">systemctl stop firewalld #关闭防火墙</span><br><span class="line">systemctl disable firewalld #禁用防火墙，开机不启动</span><br></pre></td></tr></table></figure></li>
+<li>使用yum管理rpm包<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">安装</span></span><br><span class="line">yum -y install httpd vsftpd #全新安装</span><br><span class="line">yum -y reinstall httpd vsftpd #重新安装</span><br><span class="line">yum -y update httpd vsftpd #更新升级</span><br><span class="line">yum -y update #升级系统</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查询</span></span><br><span class="line">yum list #查询下载的所有包</span><br><span class="line">yum list httpd # 列出下载的包httpd，后面有@表明已经安装，没有@表示没有安装</span><br><span class="line">yum -y remove httpd #卸载软件包</span><br></pre></td></tr></table></figure></li>
+<li>编写远程yum库配置文件</li>
+</ul>
+<ol>
+<li>清理原有的yum配置<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rm -rf /etc/yum.repos.d #先保存再清除</span><br></pre></td></tr></table></figure></li>
+<li>下载阿里官网配置<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo #下载基础包</span><br><span class="line"></span><br><span class="line">wget -O /etc/yum.repos.d/epel.repo https://mirrors.aliyun.com/repo/epel-7.repo #下载扩展包</span><br></pre></td></tr></table></figure></li>
+<li>更新配置<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum clean all &amp;&amp; yum makecache</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">yum clean all 的主要作用是清除所有已下载软件包和元数据（metadata）以及临时文件的缓存</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">yum makecache的作用是将服务器上的软件包信息缓存到本地，以提高搜索和安装软件的速度</span></span><br></pre></td></tr></table></figure></li>
+<li>查看，下载安装<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum repolist</span><br><span class="line">[root@localhost ~]# yum repolist</span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * base: mirrors.aliyun.com</span><br><span class="line"> * extras: mirrors.aliyun.com</span><br><span class="line"> * updates: mirrors.aliyun.com</span><br><span class="line">repo id              repo name                                           status</span><br><span class="line">base/7/x86_64        CentOS-7 - Base - mirrors.aliyun.com                10,072</span><br><span class="line">epel/x86_64          Extra Packages for Enterprise Linux 7 - x86_64      13,798</span><br><span class="line">extras/7/x86_64      CentOS-7 - Extras - mirrors.aliyun.com                 526</span><br><span class="line">updates/7/x86_64     CentOS-7 - Updates - mirrors.aliyun.com              5,802</span><br><span class="line">repolist: 30,198</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="rpm工具"><a href="#rpm工具" class="headerlink" title="rpm工具"></a>rpm工具</h4><ul>
+<li>前言</li>
+</ul>
+<ol>
+<li>管理红帽系统&#x2F;centos系统，rpm包的基本工具</li>
+<li>yum功能相同</li>
+<li>安装<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rpm -ivh 包名 #需要先下载包，-i 安装，-v 可视化，打印更多信息，-h 打印百分比，和-v配合使用</span><br></pre></td></tr></table></figure></li>
+<li>查询<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rpm -q wget #查询软件包</span><br></pre></td></tr></table></figure></li>
+<li>卸载<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rpm -evh 软件包 #先查询，再删除 -e(erase)卸载</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="源码包管理"><a href="#源码包管理" class="headerlink" title="源码包管理"></a>源码包管理</h3><ol>
+<li>下载源码包</li>
+<li>解压<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -xvzf tengine-3.1.0.tar.gz</span><br></pre></td></tr></table></figure></li>
+<li>配置<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">./configure --user=www --group=www --prefix=/usr/local/nginx #配置文件prefix安装路径</span><br></pre></td></tr></table></figure></li>
+<li>编译<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">make #编译</span><br></pre></td></tr></table></figure></li>
+<li>安装<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">make install #安装</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="任务计划"><a href="#任务计划" class="headerlink" title="任务计划"></a>任务计划</h2><p>定时完成一些任务，在命令上加上时间戳</p>
+<h3 id="一次性调度执行-schedule-one-time-tasks-with-at"><a href="#一次性调度执行-schedule-one-time-tasks-with-at" class="headerlink" title="一次性调度执行(schedule one-time tasks with) at"></a>一次性调度执行(schedule one-time tasks with) at</h3><ol>
+<li>语法格式：at <TIMESPEC></TIMESPEC></li>
+<li><TIMESPEC>示例<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">now + 5min #五分钟后</span><br><span class="line">teatime tomorrow (teatime is 16:00)</span><br><span class="line">noon + 4days #第四天中午</span><br><span class="line">5pm august 3 2029 #</span><br><span class="line">4:00 2024-11-27</span><br></pre></td></tr></table></figure></TIMESPEC></li>
+<li>例子<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum -y install at #安装at</span><br><span class="line">systemctl start atd #启动服务</span><br><span class="line">at now +2min</span><br><span class="line">[root@localhost ~]# at now +2min</span><br><span class="line"><span class="meta prompt_">at&gt; </span><span class="language-bash">useradd uuuuu</span></span><br><span class="line"><span class="meta prompt_">at&gt; </span><span class="language-bash">&lt;EOT&gt; <span class="comment">#cirl + D 退出</span></span></span><br><span class="line">job 2 at Wed Apr 10 16:29:00 2024</span><br><span class="line">atq #查询结果</span><br><span class="line">[root@localhost ~]# atq</span><br><span class="line">2	Wed Apr 10 16:29:00 2024 a root</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="循环调度执行-schedule-recurring-jobs-with-cron"><a href="#循环调度执行-schedule-recurring-jobs-with-cron" class="headerlink" title="循环调度执行(schedule recurring jobs with) cron"></a>循环调度执行(schedule recurring jobs with) cron</h3><ol>
+<li>简介<br>cron的概念和crontab是不可分割的<br>crontab是一个命令，常见于unix和linux操作系统中<br>用于设置周期性被执行的指令<br>该命令从标准输入设备读取指令，并将其存放于crontab文件中，以供之后读取和执行</li>
+<li>查看进程状态<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install cronie -y #安装</span><br><span class="line">systemctl start crond #启动</span><br><span class="line">systemctl status crond #查看状态</span><br><span class="line">ps aux | grep crond #查看进程</span><br><span class="line">[root@localhost etc]# ps aux | grep crond</span><br><span class="line">root      5061  0.1  0.0 126392  1664 ?        Ss   17:08   0:00 /usr/sbin/crond -n</span><br><span class="line">crond程序是运行计划任务的根本</span><br></pre></td></tr></table></figure></li>
+<li>实例</li>
+</ol>
+<ul>
+<li>计划任务位置：&#x2F;var&#x2F;spool&#x2F;cron&#x2F;</li>
+<li>管理方式</li>
+</ul>
+<ol>
+<li>创建计划<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">crontab -e Edit jobs for the current user</span><br><span class="line">crontab -e #进入一个记事本编写任务计划 :wq退出</span><br><span class="line">*  *  *  *  * 命令</span><br><span class="line">分 时 日 月 周</span><br><span class="line">分：minute(0-59)</span><br><span class="line">时：hour(0-23)</span><br><span class="line">天：day of month(1-31)</span><br><span class="line">月：month(1-12) 或者 jan，feb，mar，apr</span><br><span class="line">周：day of week(0-6)(sunday=0 or 7) 或者 sun,mon, tue</span><br><span class="line">分 时 日 月 周 命令或者脚本</span><br><span class="line">六个部分用空格隔开</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">例子</span></span><br><span class="line">5 1 15 3 * /usr/bin/ls /root #在每年3月15号1点15分执行ls命令</span><br><span class="line">5 1 15 * * ls /usr/bin/ls /root #在每月15号1点15分执行ls命令</span><br><span class="line">0 2 1,4,6 * * ls /usr/bin/ls /root #在每月1,4,6号2点执行ls命令</span><br><span class="line">0 2 5-9 * * ls /usr/bin/ls /root #在每月5-9号2点执行ls命令</span><br><span class="line">* * * * * ls /usr/bin/ls /root #在每分钟执行ls命令</span><br><span class="line">0 * * * * ls /usr/bin/ls /root #在每小时整执行ls命令</span><br><span class="line">0 2 * * 5 ls /usr/bin/ls /root #在每周五2点整执行ls命令 一般不写星期几</span><br><span class="line">0 2 2 6 5 ls /usr/bin/ls /root #6月2号的2点和6月的周五2点都执行，执行5次，取交集</span><br><span class="line">5 1 * * * ls /usr/bin/ls /root #在每天1点15分执行ls命令</span><br><span class="line">*/5 * * * * ls /usr/bin/ls /root #每隔五分钟执行ls命令</span><br><span class="line">[root@localhost ~]# crontab -e</span><br><span class="line">crontab: installing new crontab</span><br></pre></td></tr></table></figure></li>
+<li>查询计划<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">crontab -l List the jobs for the current user</span><br><span class="line">管理员可以使用crontab -u username，去管理其他用户的计划任务</span><br><span class="line">crontab -l</span><br><span class="line">[root@localhost ~]# crontab -l</span><br><span class="line">*/5 * * * * ls /usr/bin/ls /root</span><br></pre></td></tr></table></figure></li>
+<li>删除计划<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">crontab -r Remove all jobs for the current users</span><br><span class="line">crontab -r #删除</span><br><span class="line">[root@localhost ~]# crontab -l</span><br><span class="line">no crontab for root</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="日志管理"><a href="#日志管理" class="headerlink" title="日志管理"></a>日志管理</h2><h3 id="日志进程rsyslog"><a href="#日志进程rsyslog" class="headerlink" title="日志进程rsyslog"></a>日志进程rsyslog</h3><ul>
+<li>简介：rsyslog 系统日志管理，关心问题：哪类程序，产生的什么日志，放在什么地方，日志为统计信息，排除错误，日志由应用程序产生</li>
+<li>处理日志的进程</li>
+</ul>
+<ol>
+<li>第一类：<ul>
+<li>rsyslogd：系统专职日志程序</li>
+<li>处理大部分日志记录</li>
+<li>系统操作有关的信息，如登录，程序启动关闭信息，错误信息</li>
+</ul>
+</li>
+<li>第二类：<ul>
+<li>httd&#x2F;nginx&#x2F;mysql：各类应用程序，可以以自己的方式记录日志</li>
+</ul>
+</li>
+<li>观察rsyslogd<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ps aux | grep rsyslogd #d为deamon 守护进程，守护进程一般不会退出</span><br><span class="line">root      1013  0.0  0.2 216400  4020 ?        Ssl  13:53   0:00 /usr/sbin/rsyslogd -n</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>常见的日志文件(系统，进程和应用程序)<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tail -10 /var/log/messages #系统主日志文件</span><br><span class="line">Apr 10 19:01:01 localhost systemd: Started Session 15 of user root.</span><br><span class="line">     时间            主机名              消息/发生的事情 </span><br><span class="line">tail -f /var/log/messages #实时输出文件尾部</span><br><span class="line">tailf /var/log/messages #实时输出文件尾部 同上</span><br><span class="line">tailf /var/log/secure #认证安全</span><br><span class="line">tailf /var/log/yum.log #yum</span><br><span class="line">tailf /var/log/maillog #跟邮件postfix有关</span><br><span class="line">tailf /var/log/cron #crond,at有关产生的日志</span><br><span class="line">tailf /var/log/dmesg #和系统启动有关</span><br><span class="line">tailf /var/log/wtmp #当前登录的用户 w可以查看</span><br><span class="line">[root@localhost ~]# w</span><br><span class="line"> 22:18:40 up  8:25,  1 user,  load average: 0.00, 0.01, 0.05</span><br><span class="line">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT</span><br><span class="line">root     pts/1    172.16.34.145    17:59    0.00s  0.08s  0.01s w</span><br></pre></td></tr></table></figure></li>
+<li>rsyslogd配置</li>
+</ul>
+<ol>
+<li>相关程序<ul>
+<li>yum install rsyslog logrotate</li>
+<li>默认已经安装</li>
+</ul>
+</li>
+<li>启动程序<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl start rsyslog.service</span><br></pre></td></tr></table></figure></li>
+<li>相关文件<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rpm -ql rsyslog #列出和这个软件相关的文件</span><br><span class="line">rpm -qc rsyslog #列出这个软件的配置文件</span><br><span class="line">[root@localhost ~]# rpm -qc rsyslog</span><br><span class="line">/etc/logrotate.d/syslog #和日志轮转相关的文件</span><br><span class="line">/etc/rsyslog.conf #syslogd的主配置文件，关键</span><br><span class="line">/etc/sysconfig/rsyslog #syslogd的相关文件，定义级别（了解）</span><br><span class="line">主配置文件：一般都会在/ect/程序名.conf</span><br></pre></td></tr></table></figure></li>
+<li>主配置文件<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/rsyslog.conf</span><br><span class="line">cron.*              /var/log/cron #前面是程序名，.后面是日志的级别，*表示所有的日志都记录，最后是日志存放的路径</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>RULES<ul>
+<li>RULES：即规则，是一套生成日志，以及储存日志的策略</li>
+<li>规则由设备+级别+存放位置组成，设备是同一类程序的统一名称</li>
+<li>RULES由FACILITY+LEVEL+FILE组成</li>
+<li>authpriv.*  &#x2F;var&#x2F;log&#x2F;secure (SSH信息，认证设备)</li>
+<li>mail.*     -&#x2F;var&#x2F;log&#x2F;maillog (发邮件，邮件设备)，这里有个-符号，表示使用异步方式记录，因为日志文件大</li>
+<li>cron.*      &#x2F;var&#x2F;log&#x2F;cron (创建计划任务)</li>
+<li>*.info;mail.none;authpriv.none;cron.none  &#x2F;var&#x2F;log&#x2F;messages 系统日志排除了邮件，认证和计划日志，;表示并列，.none表示不放日志</li>
+</ul>
+</li>
+<li>FACILITY和LEVEL<ul>
+<li>facility<ul>
+<li>是系统对某种类型的应用程序的定义，如AUTHPRIV是安全事件，CRON是计划任务事件。用来收集同类程序的日志。</li>
+</ul>
+</li>
+<li>设备类型<ul>
+<li>LOG_SYSLOG：syslogd自身产生的日志</li>
+<li>LOG_AUTHPRIV：安全认证设备</li>
+<li>LOG_CRON：调度设备</li>
+<li>LOG_MAIL：邮件设备</li>
+<li>LOG_USER(default)：用户相关</li>
+<li>LOG_DAEMON：后台进程</li>
+<li>LOG_FTP：文件服务器</li>
+<li>LOG_KERN：kernel messages 内核</li>
+<li>LOG_LPR：打印机设备</li>
+<li>LOG_LOGCAL0 through LOG_LOCAL7：用户自定义设备</li>
+</ul>
+</li>
+<li>程序类型实例<ul>
+<li>关于程序和设备的联系问题，程序自身会决定将日志交给哪类设备。如SSH程序会贤者安全认证类设备。这一点由开发者定义。</li>
+<li>grep Facility &#x2F;etc&#x2F;ssh&#x2F;sshd_config</li>
+<li>#SyslogFacility AUTH</li>
+<li>SyslogFacility AUTHPRIV #认证程序</li>
+</ul>
+</li>
+<li>level级别<ul>
+<li>LOG_EMERG：进击，致命，服务无法继续进行，如配置文件丢失</li>
+<li>LOG_ALERT：报警，需要立即处理，如磁盘空间使用95%</li>
+<li>LOG_CRIT：致命行为</li>
+<li>LOG_ERR：错误行为</li>
+<li>LOG_WARNING：警告信息</li>
+<li>LOG_NOTICE：普通，重要的标准信息</li>
+<li>LOG_INFO：标准信息</li>
+<li>LOG_DEBUG：调试信息，拍错所需，一般不建议使用</li>
+<li>从上往下级别越来越小，信息越来越多</li>
+<li>其中* 表示所有级别的信息都记录</li>
+<li>LOG_NONE：不放日志</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>规则示意图<br><img src="1.png"></li>
+</ul>
+<h3 id="日志轮转logrotate"><a href="#日志轮转logrotate" class="headerlink" title="日志轮转logrotate"></a>日志轮转logrotate</h3><ul>
+<li>简介<ul>
+<li>logrotate日志轮转：程序将大量日志，分割管理，删除旧的日志</li>
+<li>日志记录了程序运行时的各种信息</li>
+<li>通过分析日志可以分析用户的行为，记录运动轨迹，查找程序问题</li>
+<li>可惜磁盘空间有限</li>
+<li>日志轮转就是黑匣子，记录的信息在重要也只能记录最后一段时间发生的事情</li>
+<li>为了节省空间和整理方便，日志文件经常需要按时间或大小等维度分成多份，删除时间久远的日志文件</li>
+</ul>
+</li>
+<li>工作原理</li>
+</ul>
+<ol>
+<li>按照配置进行轮转<ul>
+<li>配置文件种类<ul>
+<li>主配置文件：&#x2F;etc&#x2F;logrotate.conf(决定每个日志文件如何轮转)</li>
+<li>子配置文件夹：&#x2F;etc&#x2F;logrotate.d&#x2F;* #自定义配置，方便管理，.d 表示子目录</li>
+</ul>
+</li>
+<li>观察主文件和子文件(每装一个软件都会产生一个子配文件)<ul>
+<li>[root@localhost ~]# ls &#x2F;etc&#x2F;logrotate.conf &#x2F;etc&#x2F;logrotate.d&#x2F;</li>
+<li>&#x2F;etc&#x2F;logrotate.conf</li>
+<li>&#x2F;etc&#x2F;logrotate.d&#x2F;:</li>
+<li>bootlog  firewalld  httpd  syslog  wpa_supplicant  yum</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>主配置文件介绍</p>
+<ul>
+<li>vim &#x2F;etc&#x2F;logrotate.conf</li>
+<li>全局设置 #优先级低</li>
+<li>weekly 轮转周期，一周轮转</li>
+<li>rotate 4 保留四份</li>
+<li>create 轮转后创造新的日志文件</li>
+<li>#compress 是否压缩</li>
+<li>include &#x2F;etc&#x2F;logrotate 包含该目录下的子配置文件，我们可以在子配置文件中进行设置</li>
+<li>&#x2F;var&#x2F;log&#x2F;wtmp { #对某日志文件设置轮转方法，在配置文件中书写日志名和大阔号。可以独立设定该日志的轮转规则，这个优先级高</li>
+<li>monthly #一个月轮转一次</li>
+<li>create 0664 root utmp #轮转后穿件新文件，并设置权限，root是属主，utmp是属组</li>
+<li>minsize 1M #最小达到1M才轮转</li>
+<li>rotate 1 #保留一份</li>
+<li>}</li>
+<li>&#x2F;var&#x2F;log&#x2F;btmp {</li>
+<li>missingok #丢失不提示，不执行，这东西不重要</li>
+<li>monthly</li>
+<li>create 0600 root utmp</li>
+<li>rotate 1</li>
+<li>}</li>
+</ul>
+</li>
+<li><p>yum日志轮转实例</p>
+</li>
+<li><p>轮转的目标文件&#x2F;var&#x2F;log&#x2F;yum.log</p>
+</li>
+<li><p>配置轮转规则</p>
+<ul>
+<li>vim&#x2F;etc&#x2F;logrotate.d&#x2F;yum #安装程序的时候就会在子配置文件里面带上轮转规则</li>
+<li>&#x2F;var&#x2F;log&#x2F;yum.log { #log文件的路径</li>
+<li>missingok #丢失不执行</li>
+<li>#notifempty #空文件不轮转</li>
+<li>#maxsize 30k #达到30k轮转 日期和大小是或的关系</li>
+<li>#yearly #一年一轮转</li>
+<li>daily #一天一转</li>
+<li>rotate 3 #保存三份</li>
+<li>create 0777 root root #设置权限，这里只是示例，用来区别，默认的0644就行了</li>
+</ul>
+</li>
+<li><p>测试</p>
+<ul>
+<li>错误示范<ul>
+<li>&#x2F;usr&#x2F;sbin&#x2F;logrotate &#x2F;etc&#x2F;logrotate.conf #手动轮转</li>
+<li>ls &#x2F;var&#x2F;log&#x2F;yum*</li>
+<li>[root@localhost ~]# ls &#x2F;var&#x2F;log&#x2F;yum*</li>
+<li>&#x2F;var&#x2F;log&#x2F;yum.log</li>
+<li>没有用，没有达到我们设置的规则</li>
+</ul>
+</li>
+<li>正确示范<ul>
+<li>date 04151234 #修改时间 月日时分，每个两位</li>
+<li>&#x2F;usr&#x2F;sbin&#x2F;logrotate -s &#x2F;var&#x2F;lib&#x2F;logrotate&#x2F;logrotate.status &#x2F;etc&#x2F;logrotate.conf #-s是时间戳</li>
+<li>ls &#x2F;var&#x2F;log&#x2F;yum* #出现多个文件</li>
+<li>&#x2F;var&#x2F;lib&#x2F;logrotate&#x2F;logrotate.status #这个文件说明有切过的状态</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/da_ge_de_nv_ren/article/details/128391575" title="Linux">Linux</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pz4y1D73n?p=29&vd_source=4470be84aba61145fe9d1690fe726951" title="千锋云计算Linux教程650集，linux系统运维从入门到精通教程（Linux安装极速入门，零基础必备）">千锋云计算Linux教程650集，linux系统运维从入门到精通教程（Linux安装极速入门，零基础必备）</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://haharcher1.github.io">爱吃铜锣烧的哆啦酱</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://haharcher1.github.io/2024/04/10/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E4%B8%89%EF%BC%89/">https://haharcher1.github.io/2024/04/10/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E4%B8%89%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://haharcher1.github.io" target="_blank">哆啦酱的点心屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_imagescbcf05e9ea98488cba2a416bb33f1bbe.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/04/10/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E5%9B%9B%EF%BC%89/" title="Linux常用命令（四）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images97b97ee1173042d5ba667df7ecbe43f6.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Linux常用命令（四）</div></div></a></div><div class="next-post pull-right"><a href="/2024/04/09/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Linux常用命令（二）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images0639b8855aab4dcbb827a9884e8ec57d.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Linux常用命令（二）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/03/20/Centos8-stream%E5%AE%89%E8%A3%85VASP-2024-Intel-oneAPI/" title="Centos8 stream安装VASP--2024 Intel oneAPI"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_imagesa9982f7441bd4e07a3b1a26af43457d9.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-20</div><div class="title">Centos8 stream安装VASP--2024 Intel oneAPI</div></div></a></div><div><a href="/2024/03/28/Centos8%E9%9B%86%E7%BE%A4Slurm%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%80%EF%BC%89/" title="Centos8集群Slurm作业管理系统安装（一）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images61ac5e440dac4d97a6624e05044c4074.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-28</div><div class="title">Centos8集群Slurm作业管理系统安装（一）</div></div></a></div><div><a href="/2024/03/28/Centos8%E9%9B%86%E7%BE%A4Slurm%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%89%EF%BC%89/" title="Centos8集群Slurm作业管理系统安装（三）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images96b26df8437c44e899f67d2fee4777ae.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-28</div><div class="title">Centos8集群Slurm作业管理系统安装（三）</div></div></a></div><div><a href="/2024/03/28/Centos8%E9%9B%86%E7%BE%A4Slurm%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Centos8集群Slurm作业管理系统安装（二）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images6a17c887d6054e798c9c88f4ca76f932.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-28</div><div class="title">Centos8集群Slurm作业管理系统安装（二）</div></div></a></div><div><a href="/2024/03/22/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%80%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（一）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images7e4afde0d80946dea5898e2dfa559b81.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-22</div><div class="title">Centos8集群Torque作业管理系统安装（一）</div></div></a></div><div><a href="/2024/03/23/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%89%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（三）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images40ff251e2a5c4764b2f59513fbdd8c81.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-23</div><div class="title">Centos8集群Torque作业管理系统安装（三）</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">爱吃铜锣烧的哆啦酱</div><div class="author-info__description">好饿好饿好饿，我真的好饿！</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">19</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hahArcher1"><i class="fab fa-github"></i><span>订阅我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hahArcher1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到哆啦酱的点心屋！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%96%E5%88%AB%E5%90%8D"><span class="toc-number">1.</span> <span class="toc-text">取别名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1"><span class="toc-number">2.</span> <span class="toc-text">统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E8%BD%AF%E4%BB%B6%E5%8C%85"><span class="toc-number">3.</span> <span class="toc-text">下载软件包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE"><span class="toc-number">4.</span> <span class="toc-text">文件查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%89%93%E5%8C%85%E5%8E%8B%E7%BC%A9"><span class="toc-number">5.</span> <span class="toc-text">文件打包压缩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86"><span class="toc-number">6.</span> <span class="toc-text">软件管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RPM%E5%8C%85"><span class="toc-number">6.1.</span> <span class="toc-text">RPM包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E5%8C%85"><span class="toc-number">6.2.</span> <span class="toc-text">源码包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RPM%E5%8C%85%E7%AE%A1%E7%90%86"><span class="toc-number">6.3.</span> <span class="toc-text">RPM包管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#yum%E5%B7%A5%E5%85%B7"><span class="toc-number">6.3.1.</span> <span class="toc-text">yum工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rpm%E5%B7%A5%E5%85%B7"><span class="toc-number">6.3.2.</span> <span class="toc-text">rpm工具</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E5%8C%85%E7%AE%A1%E7%90%86"><span class="toc-number">6.4.</span> <span class="toc-text">源码包管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E8%AE%A1%E5%88%92"><span class="toc-number">7.</span> <span class="toc-text">任务计划</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E6%AC%A1%E6%80%A7%E8%B0%83%E5%BA%A6%E6%89%A7%E8%A1%8C-schedule-one-time-tasks-with-at"><span class="toc-number">7.1.</span> <span class="toc-text">一次性调度执行(schedule one-time tasks with) at</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E8%B0%83%E5%BA%A6%E6%89%A7%E8%A1%8C-schedule-recurring-jobs-with-cron"><span class="toc-number">7.2.</span> <span class="toc-text">循环调度执行(schedule recurring jobs with) cron</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86"><span class="toc-number">8.</span> <span class="toc-text">日志管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E8%BF%9B%E7%A8%8Brsyslog"><span class="toc-number">8.1.</span> <span class="toc-text">日志进程rsyslog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E8%BD%AE%E8%BD%AClogrotate"><span class="toc-number">8.2.</span> <span class="toc-text">日志轮转logrotate</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number"></span> <span class="toc-text">参考</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/04/10/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E5%9B%9B%EF%BC%89/" title="Linux常用命令（四）"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images97b97ee1173042d5ba667df7ecbe43f6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux常用命令（四）"/></a><div class="content"><a class="title" href="/2024/04/10/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E5%9B%9B%EF%BC%89/" title="Linux常用命令（四）">Linux常用命令（四）</a><time datetime="2024-04-10T15:07:48.000Z" title="发表于 2024-04-10 23:07:48">2024-04-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/10/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E4%B8%89%EF%BC%89/" title="Linux常用命令（三）"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_imagescbcf05e9ea98488cba2a416bb33f1bbe.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux常用命令（三）"/></a><div class="content"><a class="title" href="/2024/04/10/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E4%B8%89%EF%BC%89/" title="Linux常用命令（三）">Linux常用命令（三）</a><time datetime="2024-04-10T01:20:48.000Z" title="发表于 2024-04-10 09:20:48">2024-04-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/09/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Linux常用命令（二）"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images0639b8855aab4dcbb827a9884e8ec57d.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux常用命令（二）"/></a><div class="content"><a class="title" href="/2024/04/09/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Linux常用命令（二）">Linux常用命令（二）</a><time datetime="2024-04-09T01:10:49.000Z" title="发表于 2024-04-09 09:10:49">2024-04-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/28/Centos8%E9%9B%86%E7%BE%A4Slurm%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%89%EF%BC%89/" title="Centos8集群Slurm作业管理系统安装（三）"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images96b26df8437c44e899f67d2fee4777ae.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Centos8集群Slurm作业管理系统安装（三）"/></a><div class="content"><a class="title" href="/2024/03/28/Centos8%E9%9B%86%E7%BE%A4Slurm%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%89%EF%BC%89/" title="Centos8集群Slurm作业管理系统安装（三）">Centos8集群Slurm作业管理系统安装（三）</a><time datetime="2024-03-28T14:42:14.000Z" title="发表于 2024-03-28 22:42:14">2024-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/03/28/Centos8%E9%9B%86%E7%BE%A4Slurm%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Centos8集群Slurm作业管理系统安装（二）"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images6a17c887d6054e798c9c88f4ca76f932.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Centos8集群Slurm作业管理系统安装（二）"/></a><div class="content"><a class="title" href="/2024/03/28/Centos8%E9%9B%86%E7%BE%A4Slurm%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Centos8集群Slurm作业管理系统安装（二）">Centos8集群Slurm作业管理系统安装（二）</a><time datetime="2024-03-28T11:36:23.000Z" title="发表于 2024-03-28 19:36:23">2024-03-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By 爱吃铜锣烧的哆啦酱</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来到哆啦酱的点心屋！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: '1e6e2f537e19cc631780',
+      clientSecret: '247d7fcfdc71454a3a9dba4ae26d333c83219710',
+      repo: 'hahArcher1.github.io',
+      owner: 'hahArcher1',
+      admin: ['hahArcher1'],
+      id: '8a24d90cb69243b7ee017d8fb8515689',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
