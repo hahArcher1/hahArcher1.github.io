@@ -1,0 +1,480 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Linux的Shell编程 | 哆啦酱的点心屋</title><meta name="author" content="爱吃铜锣烧的哆啦酱"><meta name="copyright" content="爱吃铜锣烧的哆啦酱"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="shell语言的概述shell的背景shell语言是指UNIX操作系统的命令语言，也是一种程序设计语言。 shell的作用可以自动化的执行命令，提升效率。 shell的执行方式bash file1.sh #利用bash执行sh file1.sh #利用sh执行. file1.sh #利用.执行，注意空格source file1.sh #利用source执行chmod u+x file1.sh #添">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux的Shell编程">
+<meta property="og:url" content="https://haharcher1.github.io/2024/04/14/Linux%E7%9A%84Shell%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="哆啦酱的点心屋">
+<meta property="og:description" content="shell语言的概述shell的背景shell语言是指UNIX操作系统的命令语言，也是一种程序设计语言。 shell的作用可以自动化的执行命令，提升效率。 shell的执行方式bash file1.sh #利用bash执行sh file1.sh #利用sh执行. file1.sh #利用.执行，注意空格source file1.sh #利用source执行chmod u+x file1.sh #添">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images2c61b17b880611ebb6edd017c2d2eca2.jpg">
+<meta property="article:published_time" content="2024-04-14T07:01:09.000Z">
+<meta property="article:modified_time" content="2024-04-14T15:10:05.922Z">
+<meta property="article:author" content="爱吃铜锣烧的哆啦酱">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="shell">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images2c61b17b880611ebb6edd017c2d2eca2.jpg"><link rel="shortcut icon" href="/img/favicon2.png"><link rel="canonical" href="https://haharcher1.github.io/2024/04/14/Linux%E7%9A%84Shell%E7%BC%96%E7%A8%8B/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体中文","cht_to_chs":"你已切换为简体中文","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux的Shell编程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-14 23:10:05'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.1.1"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page child" href="/download/"><i class="fa-fw fas fa-download"></i><span> 资源</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images2c61b17b880611ebb6edd017c2d2eca2.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="哆啦酱的点心屋"><span class="site-name">哆啦酱的点心屋</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/Music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></li><li><a class="site-page child" href="/download/"><i class="fa-fw fas fa-download"></i><span> 资源</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/About/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux的Shell编程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-14T07:01:09.000Z" title="发表于 2024-04-14 15:01:09">2024-04-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-14T15:10:05.922Z" title="更新于 2024-04-14 23:10:05">2024-04-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">技术学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Linux的Shell编程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="shell语言的概述"><a href="#shell语言的概述" class="headerlink" title="shell语言的概述"></a>shell语言的概述</h1><h2 id="shell的背景"><a href="#shell的背景" class="headerlink" title="shell的背景"></a>shell的背景</h2><p>shell语言是指UNIX操作系统的命令语言，也是一种程序设计语言。</p>
+<h2 id="shell的作用"><a href="#shell的作用" class="headerlink" title="shell的作用"></a>shell的作用</h2><p>可以自动化的执行命令，提升效率。</p>
+<h2 id="shell的执行方式"><a href="#shell的执行方式" class="headerlink" title="shell的执行方式"></a>shell的执行方式</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bash file1.sh #利用bash执行</span><br><span class="line">sh file1.sh #利用sh执行</span><br><span class="line">. file1.sh #利用.执行，注意空格</span><br><span class="line">source file1.sh #利用source执行</span><br><span class="line">chmod u+x file1.sh #添加文件执行</span><br><span class="line">./file1.sh #直接执行</span><br></pre></td></tr></table></figure>
+<h2 id="shell的执行方式的区别"><a href="#shell的执行方式的区别" class="headerlink" title="shell的执行方式的区别"></a>shell的执行方式的区别</h2><p><code>bash file1.sh</code>，<code>sh file1.sh</code>和<code>./file1.sh</code>采用的是子shell，而<code>. file1.sh</code>和<code>source file1.sh</code>采用的是本shell。</p>
+<ul>
+<li>子shell：重新开启一个环境，即独立的环境，执行完成后退出，执行结果不会影响本环境。简单的例子如果shell脚本里面有前往其他目录的命令。shell结束后会回到执行目录，因为是在新环境中执行的。</li>
+<li>本shell：在本环境中执行，执行结果会影响本环境。简单的例子如果shell脚本里面有前往其他目录的命令。shell结束后就会在新的目录。</li>
+<li>最好使用前三种执行方式。</li>
+</ul>
+<h2 id="shell解释器"><a href="#shell解释器" class="headerlink" title="shell解释器"></a>shell解释器</h2><p>可以通过<code>cat /etc/shells</code>或者<code>chsh -l</code>查询</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@www ~]# cat /etc/shells</span><br><span class="line">/bin/sh</span><br><span class="line">/bin/bash</span><br><span class="line">/usr/bin/sh</span><br><span class="line">/usr/bin/bash</span><br></pre></td></tr></table></figure>
+<h1 id="shell的变量"><a href="#shell的变量" class="headerlink" title="shell的变量"></a>shell的变量</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>用固定的<strong>字符串</strong>去表达固定的内容</p>
+<h2 id="自定义变量"><a href="#自定义变量" class="headerlink" title="自定义变量"></a>自定义变量</h2><h3 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h3><p>用户自定义的变量名和变量值，注意<code>=</code>两边<strong>不能加空格</strong>，<strong>不能加空格</strong>，<strong>不能加空格</strong></p>
+<h3 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">name=&quot;archer&quot;</span><br><span class="line">ddd=123</span><br><span class="line">ccc=gege</span><br></pre></td></tr></table></figure>
+<h4 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h4><ul>
+<li><strong>变量名不能以数字开头</strong></li>
+<li><code>=</code><strong>左右不能有空格</strong>，空格在shell起分割左右，会被看做是多个命令</li>
+<li><strong>变量的值如果有空格必须加引号</strong></li>
+</ul>
+<h3 id="重复定义变量"><a href="#重复定义变量" class="headerlink" title="重复定义变量"></a>重复定义变量</h3><ul>
+<li>如果重复定义变量时，会被覆盖<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">a=123</span><br><span class="line">a=789</span><br><span class="line">echo $a</span><br><span class="line">[root@www ~]# echo $a</span><br><span class="line">789</span><br></pre></td></tr></table></figure></li>
+<li>如果需要变量叠加的话，可以使用<code>a=&quot;$a&quot;789</code>或者<code>a=$&#123;a&#125;789</code><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">a=123</span><br><span class="line">a=&quot;$a&quot;789</span><br><span class="line">echo $a</span><br><span class="line">[root@www ~]# echo $a</span><br><span class="line">123789</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="查看变量"><a href="#查看变量" class="headerlink" title="查看变量"></a>查看变量</h3><p>使用<code>set</code>命令可以查看变量</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">set | grep a</span><br><span class="line">[root@www ~]# set | grep name</span><br><span class="line">name=archer</span><br></pre></td></tr></table></figure>
+<h3 id="删除变量"><a href="#删除变量" class="headerlink" title="删除变量"></a>删除变量</h3><p>使用命令：<code>unset 变量名</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">unset name</span><br><span class="line">[root@www ~]# echo $name #无法给出变量值</span><br></pre></td></tr></table></figure>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/usr/bin/bash</span></span><br><span class="line">read -p &quot;please input ip:&quot; IP</span><br><span class="line">ping -c 1 $IP &amp;&gt; /dev/null &amp;&amp; echo $&#123;IP&#125;upupup || echo $&#123;IP&#125;down #查主句是否在线</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ping -c 1 只发送一个包</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">&amp;&gt; /dev/null 把输出的正确信息和错误信息重定向到/dev/null，类似于垃圾桶</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">&amp;&amp;和|| 是三目运算符，&amp;&amp;前命令执行成功后执行&amp;&amp;后的命令，没成功就执行||后的命令</span></span><br></pre></td></tr></table></figure>
+<h3 id="交互式定义变量"><a href="#交互式定义变量" class="headerlink" title="交互式定义变量"></a>交互式定义变量</h3><ul>
+<li><code>read</code>从键盘读入变量值，<code>read 变量名</code></li>
+<li><code>read -p &quot;请输入变量值：&quot; ppp</code>，<code>-p</code>表示print，会打印后面那一段话<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@www ~]# read -p &quot;请输入变量值：&quot; ppp</span><br><span class="line">请输入变量值：258</span><br><span class="line">[root@www ~]# echo $ppp</span><br><span class="line">258</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="注意三种引号"><a href="#注意三种引号" class="headerlink" title="注意三种引号"></a>注意三种引号</h3><ul>
+<li><code>&quot;&quot;</code>弱引用：里面只会对一些变量起作用，如果有特殊符号，会把特殊符号的效果执行</li>
+<li><code>&#39;&#39;</code>强引用：取消特殊符号的效果，单引号里面是啥就是啥</li>
+<li><code>``</code>优先执行：引号里面必须为命令，会把引号里面的命令执行，把执行后的结果保存<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@www ~]# a=123</span><br><span class="line">[root@www ~]# a=&quot;$123&quot;145</span><br><span class="line">[root@www ~]# echo $a</span><br><span class="line">23145</span><br><span class="line"></span><br><span class="line">[root@www ~]# a=123</span><br><span class="line">[root@www ~]# a=&#x27;$123&#x27;145</span><br><span class="line">[root@www ~]# echo $a</span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">123145</span></span><br><span class="line"></span><br><span class="line">[root@www ~]# a=`ls /home`</span><br><span class="line">[root@www ~]# echo $a</span><br><span class="line">uuuu uuuuu www</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="整数运算"><a href="#整数运算" class="headerlink" title="整数运算"></a>整数运算</h2><h3 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h3><p>使用<code>expr</code>命令，<code>expr 1 + 2</code> 或者 <code>expr $num1 + $num2</code>，可以使用<code>+</code>加，<code>-</code>减，<code>\*</code>乘，<code>/</code>除，<code>%</code>取余，注意由于<code>*</code>在shell中表示任意字符，因此需要用<code>\</code>进行转义。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">num1=1</span><br><span class="line">num2=2</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">##加法运算</span></span></span><br><span class="line">[root@www ~]# expr $num1 + $num2</span><br><span class="line">3</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">##减法</span></span></span><br><span class="line">[root@www ~]# expr $num1 - $num2</span><br><span class="line">-1</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">##乘法</span></span></span><br><span class="line">[root@www ~]# expr $num1 \* $num2</span><br><span class="line">2</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">##除法</span></span></span><br><span class="line">[root@www ~]# expr $num1 /  $num2</span><br><span class="line">0</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment">##取余</span></span></span><br><span class="line">[root@www ~]# expr $num1 %  $num2</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<h3 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h3><p>使用<code>$(())</code>命令，<code>$(($num1 + $num2))</code>，<code>$((num1 + num2))</code>，可以按照正常的四则运算进行计算</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">num1=1</span><br><span class="line">num2=2</span><br><span class="line">echo $(($num1 + $num2))</span><br><span class="line">[root@www ~]# echo $(($num1 + $num2))</span><br><span class="line">3</span><br><span class="line"></span><br><span class="line">[root@www ~]# echo $((num1 + num2)) #可以不用$取值</span><br><span class="line">3</span><br><span class="line"></span><br><span class="line">[root@www ~]# echo $((5-3*2)) #这种方法*不用转义</span><br><span class="line">-1</span><br><span class="line"></span><br><span class="line">[root@www ~]# echo $((3**2)) #可以使用**进行乘方计算</span><br><span class="line">9</span><br></pre></td></tr></table></figure>
+<h3 id="方法3"><a href="#方法3" class="headerlink" title="方法3"></a>方法3</h3><p>使用<code>$[]</code>命令，<code>$[5+2]</code>，<code>$[$num1 + $num2]</code>，<code>$[num1 * num2]</code>，可以按照正常的四则运算进行计算</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">num1=1</span><br><span class="line">num2=2</span><br><span class="line">[root@www ~]# echo $[5+2]</span><br><span class="line">7</span><br><span class="line"></span><br><span class="line">[root@www ~]# echo $[$num1 + $num2]</span><br><span class="line">3</span><br><span class="line"></span><br><span class="line">[root@www ~]# echo $[num1 * num2] #这种方法*不用转义，#可以不用$取值</span><br><span class="line">2</span><br><span class="line"></span><br><span class="line">[root@www ~]# echo $[3**2] #可以使用**进行乘方计算</span><br><span class="line">9</span><br></pre></td></tr></table></figure>
+<h3 id="方法4"><a href="#方法4" class="headerlink" title="方法4"></a>方法4</h3><p>使用<code>let</code>命令，<code>let sum=2+3;echo $sum</code>，<code>let sum++;echo $sum</code>，可以按照正常的四则运算进行计算，和C语言类似，可以使用<code>++</code>，<code>--</code>等语法</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@www ~]# let sum=2+3;echo $sum</span><br><span class="line">5</span><br><span class="line">[root@www ~]# let sum++;echo $sum #C语言的语法</span><br><span class="line">6</span><br><span class="line"></span><br><span class="line">num1=1</span><br><span class="line">num2=2</span><br><span class="line">[root@www ~]# let sum=$num1+$num2;echo $sum</span><br><span class="line">3</span><br><span class="line">[root@www ~]# let sum=num1+num2;echo $sum #可以不用$取值</span><br><span class="line">3</span><br><span class="line">[root@www ~]# let sum=num1*num2;echo $sum #这种方法*不用转义</span><br><span class="line">2</span><br><span class="line">[root@www ~]# let sum=num1**num2;echo $sum #可以使用乘方</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<h2 id="小数运算"><a href="#小数运算" class="headerlink" title="小数运算"></a>小数运算</h2><p>shell执行小数的运算需要用到<code>bc</code>，用法<code>&quot;scale=保留小数的位数;6/4&quot;|bc</code>，<code>&quot;scale=2;6/4&quot;|bc</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum -y install bc</span><br><span class="line">[root@www ~]# echo &quot;scale=2;6/4&quot;|bc</span><br><span class="line">1.50</span><br><span class="line"></span><br><span class="line">[root@www ~]# echo &quot;2^4&quot;|bc</span><br><span class="line">16</span><br><span class="line"></span><br><span class="line">[root@www ~]# echo &quot;scale=9;10/3&quot;|bc</span><br><span class="line">3.333333333</span><br></pre></td></tr></table></figure>
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><p>环境变量可以参考：<a href="/2024/04/13/Centos%E4%B8%AD%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" title="Centos中的环境变量">Centos中的环境变量</a></p>
+<h2 id="位置变量"><a href="#位置变量" class="headerlink" title="位置变量"></a>位置变量</h2><ol>
+<li>由系统定义，每个程序都会有位置变量，位置变量语法：<code>$0(命令名)</code>，<code>$1~$9(位置0~位置9)</code>，<code>$9</code>以后有特殊定义</li>
+<li>示例<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/usr/bin/bash</span></span><br><span class="line">name=$0</span><br><span class="line">number1=$1</span><br><span class="line">number2=$2</span><br><span class="line">echo -n &quot;平均值为：&quot; #-n表示不换行</span><br><span class="line">echo &quot;scale=2;($number1+$number2)/2&quot; | bc</span><br><span class="line">echo $name</span><br><span class="line"></span><br><span class="line">[root@www ~]# sh ggg.sh 1 2</span><br><span class="line">平均值为：1.50</span><br><span class="line">ggg.sh</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="预定义变量"><a href="#预定义变量" class="headerlink" title="预定义变量"></a>预定义变量</h2><ol>
+<li><code>$0</code>：脚本&#x2F;程序名字</li>
+<li><code>$*</code>：所有的参数</li>
+<li><code>$#</code>：参数的个数</li>
+<li><code>$?</code>：上一个程序的返回值，(0是成功，非0失败)</li>
+<li><code>$$</code>：程序的PID<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim ggg.sh</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/usr/bin/bash</span></span><br><span class="line">number1=$1</span><br><span class="line">number2=$2</span><br><span class="line">echo &quot;程序名字:&quot; $0</span><br><span class="line">echo &quot;所有参数:&quot; $*</span><br><span class="line">echo &quot;程序参数个数:&quot; $#</span><br><span class="line">echo &quot;程序的PID:&quot; $$</span><br><span class="line">[root@www ~]# sh ggg.sh 1 2</span><br><span class="line">程序名字: ggg.sh</span><br><span class="line">所有参数: 1 2</span><br><span class="line">程序参数个数: 2</span><br><span class="line">程序的PID: 2009</span><br><span class="line"></span><br><span class="line">[root@www ~]# echo $? #表明上一个程序执行成功</span><br><span class="line">0</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="变量的示例"><a href="#变量的示例" class="headerlink" title="变量的示例"></a>变量的示例</h2><ol>
+<li>脚本创建用户名和密码，<code>user.sh</code><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim user.sh</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/usr/bin/bash</span></span><br><span class="line">useradd $1</span><br><span class="line">echo &quot;$2&quot; | passwd --stdin &quot;$1&quot; &amp;&gt; /dev/null #--stdin 表示标准输入输出，说明不管后面出现什么都输入$2的内容，因为输入密码要输入两次</span><br><span class="line">echo &quot;$1&quot; 创建成功，密码是：&quot;$2&quot;</span><br></pre></td></tr></table></figure></li>
+<li>脚本配置本地<code>yum</code>源，<code>yum.sh</code><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim yum.sh</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/usr/bin/bash</span></span><br><span class="line">mount /dev/cdrom /mnt &amp;&gt; /dev/null</span><br><span class="line">cp -r /etc/yum.repos.d /etc/yum.repos.d_back</span><br><span class="line">rm -rf /etc/yum.repos.d/*</span><br><span class="line">cat &lt;&lt;EOF &gt;/etc/yum.repos.d/yum.repo</span><br><span class="line">[local]</span><br><span class="line">name=localyum</span><br><span class="line">baseurl=file:///mnt/AppStream/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">EOF</span><br><span class="line">yum repolist all</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="shell的判断语句"><a href="#shell的判断语句" class="headerlink" title="shell的判断语句"></a>shell的判断语句</h1><h2 id="shell的条件测试"><a href="#shell的条件测试" class="headerlink" title="shell的条件测试"></a>shell的条件测试</h2><h3 id="数值比较"><a href="#数值比较" class="headerlink" title="数值比较"></a>数值比较</h3><ul>
+<li>语法：<br><code>[ $num1 operation $num2 ]</code>，注意<code>[]</code>作为一个语法规则，不能和其他字符连在一起，<strong>必须要打空格</strong>，执行结果保存在<code>$?</code>中，为<code>0</code>表示运算为真，<code>1</code>表示运算为假。<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>[ $num1 -gt $num2 ]</code></td>
+<td align="center">大于</td>
+</tr>
+<tr>
+<td align="center"><code>[ $num1 -lt $num2 ]</code></td>
+<td align="center">小于</td>
+</tr>
+<tr>
+<td align="center"><code>[ $num1 -eq $num2 ]</code></td>
+<td align="center">等于</td>
+</tr>
+<tr>
+<td align="center"><code>[ $num1 -ne $num2 ]</code></td>
+<td align="center">不等于</td>
+</tr>
+<tr>
+<td align="center"><code>[ $num1 -ge $num2 ]</code></td>
+<td align="center">大于等于</td>
+</tr>
+<tr>
+<td align="center"><code>[ $num1 -le $num2 ]</code></td>
+<td align="center">小于等于</td>
+</tr>
+</tbody></table>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">num1=20</span><br><span class="line">num2=10</span><br><span class="line">[root@www ~]# [ $num1 -gt $num2 ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ $num1 -lt $num2 ];echo $?</span><br><span class="line">1</span><br><span class="line">[root@www ~]# [ $num1 -eq $num2 ];echo $?</span><br><span class="line">1</span><br><span class="line">[root@www ~]# [ $num1 -ne $num2 ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ $num1 -ge $num2 ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ $num1 -le $num2 ];echo $?</span><br><span class="line">1</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="文件测试"><a href="#文件测试" class="headerlink" title="文件测试"></a>文件测试</h3><ul>
+<li>语法：<code>[ 操作符 文件/目录 ]</code>，注意<code>[]</code>作为一个语法规则，不能和其他字符连在一起，<strong>必须要打空格</strong>，执行结果保存在<code>$?</code>中，为<code>0</code>表示运算为真，<code>1</code>表示运算为假，不止这些，有很多。<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>[ -f filename ]</code></td>
+<td align="center">当filename存在时返回真</td>
+</tr>
+<tr>
+<td align="center"><code>[ -b filename ]</code></td>
+<td align="center">当filename存在且为块文件时返回真</td>
+</tr>
+<tr>
+<td align="center"><code>[ -d pathname ]</code></td>
+<td align="center">当pathname存在且为文件夹时返回真</td>
+</tr>
+<tr>
+<td align="center"><code>[ -h filename ]</code></td>
+<td align="center">当filename存在且为符号链接文件时返回真</td>
+</tr>
+<tr>
+<td align="center"><code>[ -L filename ]</code></td>
+<td align="center">当filename存在且为符号链接文件时返回真</td>
+</tr>
+<tr>
+<td align="center"><code>[ -c filename ]</code></td>
+<td align="center">当filename存在且为字符文件时返回真</td>
+</tr>
+<tr>
+<td align="center"><code>[ -e pathname ]</code></td>
+<td align="center">当pathname指定的文件或路径存在时返回真</td>
+</tr>
+<tr>
+<td align="center"><code>[ -u pathname ]</code></td>
+<td align="center">当pathname指定的文件或路径存在，并设置了SUID位时返回真</td>
+</tr>
+<tr>
+<td align="center"><code>[ -g pathname ]</code></td>
+<td align="center">当pathname指定的文件或路径存在，并设置了SGID位时返回真</td>
+</tr>
+<tr>
+<td align="center"><code>[ -k pathname ]</code></td>
+<td align="center">当pathname指定的文件或路径存在，并设置了“粘滞”位时返回真</td>
+</tr>
+<tr>
+<td align="center"><code>[ -p filename ]</code></td>
+<td align="center">当filename指定的文件存在并且文件类型是管道时返回真</td>
+</tr>
+<tr>
+<td align="center"><code>[ -r pathname ]</code></td>
+<td align="center">当pathname指定的文件或路径存在，并且可读时返回真，对于当前用户而言</td>
+</tr>
+<tr>
+<td align="center"><code>[ -s filename ]</code></td>
+<td align="center">当filename指定的文件并且文件大小大于0时返回真</td>
+</tr>
+<tr>
+<td align="center"><code>[ -S filename ]</code></td>
+<td align="center">当filename指定的文件存在并且是Socket时返回真</td>
+</tr>
+<tr>
+<td align="center"><code>[ -w pathname ]</code></td>
+<td align="center">当pathname指定的文件或路径存在，并且可写时返回真，对于当前用户而言</td>
+</tr>
+<tr>
+<td align="center"><code>[ -x pathname ]</code></td>
+<td align="center">当pathname指定的文件或路径存在，并且可执行时返回真，对于当前用户而言</td>
+</tr>
+<tr>
+<td align="center"><code>[ -O pathname ]</code></td>
+<td align="center">当pathname指定的文件或路径存在，并且属主是当前用户时为真</td>
+</tr>
+<tr>
+<td align="center"><code>[ -G pathname ]</code></td>
+<td align="center">当pathname指定的文件或路径存在，并且属组是当前用户的组时为真</td>
+</tr>
+</tbody></table>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@www ~]# [ -f file1.sh ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ -f file2.sh ];echo $?</span><br><span class="line">1</span><br><span class="line">[root@www ~]# [ -b /dev/sda ]; echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ -b /root/file1 ]; echo $?</span><br><span class="line">1</span><br><span class="line">[root@www ~]# [ -d /root/ ]; echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ -d /root/file1.sh ]; echo $?</span><br><span class="line">1</span><br><span class="line">[root@www ~]# [ -h /bin ]; echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ -h /root/file1.sh ]; echo $?</span><br><span class="line">1</span><br><span class="line">[root@www ~]# [ -L /bin ]; echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ -c /dev/sg0 ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ -e /root ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# chmod u+s bash.sh;[ -u /root/bash.sh ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# chmod g+s bash.sh;[ -g /root/bash.sh ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# chmod o+t bash.sh;[ -k /root/bash.sh ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ -p /run/systemd/initctl/fifo ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ -r /root/file1.sh ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ -s /root/file1.sh ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ -S /run/lvm/lvmpolld.socket ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ -w /root/file1.sh ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ -x /root/file1.sh ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ -O /root/file1.sh ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ -G /root/file1.sh ];echo $?</span><br><span class="line">0</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h3><ul>
+<li>语法：<code>[ string1 operation string2 ]</code>，注意<code>[]</code>作为一个语法规则，不能和其他字符连在一起，<strong>必须要打空格</strong>，执行结果保存在<code>$?</code>中，为<code>0</code>表示运算为真，<code>1</code>表示运算为假<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>[ $string1 = $string2 ]</code></td>
+<td align="center">字符串相等</td>
+</tr>
+<tr>
+<td align="center"><code>[ $string1 != $string2 ]</code></td>
+<td align="center">字符串不相等</td>
+</tr>
+<tr>
+<td align="center"><code>[ -z $string ]</code></td>
+<td align="center">判断字符串的个数是否为<code>0</code>，如果个数为<code>0</code>，返回真</td>
+</tr>
+<tr>
+<td align="center"><code>[ -n $string ]</code></td>
+<td align="center">判断字符串的个数是否为<code>0</code>，如果个数不为<code>0</code>，返回真</td>
+</tr>
+</tbody></table>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@www ~]# [ &quot;yes&quot; = &quot;yes&quot; ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ &quot;yes&quot; != &quot;yes&quot; ];echo $?</span><br><span class="line">1</span><br><span class="line">[root@www ~]# string1=yes</span><br><span class="line">[root@www ~]# string2=yes</span><br><span class="line">[root@www ~]# [ $string1 = $string2 ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# [ $string1 != $string2 ];echo $?</span><br><span class="line">1</span><br><span class="line">[root@www ~]# string=&quot;&quot;;[ -z $string ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# string=&quot;DDD&quot;;[ -n $string ];echo $?</span><br><span class="line">0</span><br><span class="line">[root@www ~]# num=$&#123;#string&#125;;echo $num # $&#123;#string&#125;可以统计字符串的长度。</span><br><span class="line">3</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="多条件测试"><a href="#多条件测试" class="headerlink" title="多条件测试"></a>多条件测试</h3><ul>
+<li>语法：如下，注意<code>[]</code>作为一个语法规则，不能和其他字符连在一起，<strong>必须要打空格</strong>，执行结果保存在<code>$?</code>中，为<code>0</code>表示运算为真，<code>1</code>表示运算为假，<code>and</code>有两种写法：<code>&amp;&amp;</code>, <code>-a</code>。<code>or</code>也有两种写法：<code>||</code>, <code>-o</code><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>[ 条件1 -a 条件2 ]</code></td>
+<td align="center">两边都为真才为真，否则为假</td>
+</tr>
+<tr>
+<td align="center"><code>[[ 条件1 &amp;&amp; 条件2 ]]</code></td>
+<td align="center">两边都为真才为真，否则为假</td>
+</tr>
+<tr>
+<td align="center"><code>[ 条件1 ] &amp;&amp; [ 条件2 ]</code></td>
+<td align="center">两边都为真才为真，否则为假</td>
+</tr>
+<tr>
+<td align="center"><code>[ 条件1 -o 条件2 ]</code></td>
+<td align="center">一边为真就为真，否则为假</td>
+</tr>
+<tr>
+<td align="center"><code>[[ 条件1 || 条件2 ]]</code></td>
+<td align="center">一边为真就为真，否则为假</td>
+</tr>
+<tr>
+<td align="center"><code>[ 条件1 ] || [ 条件2 ]</code></td>
+<td align="center">一边为真就为真，否则为假</td>
+</tr>
+</tbody></table>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://haharcher1.github.io">爱吃铜锣烧的哆啦酱</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://haharcher1.github.io/2024/04/14/Linux%E7%9A%84Shell%E7%BC%96%E7%A8%8B/">https://haharcher1.github.io/2024/04/14/Linux%E7%9A%84Shell%E7%BC%96%E7%A8%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://haharcher1.github.io" target="_blank">哆啦酱的点心屋</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/shell/">shell</a></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images2c61b17b880611ebb6edd017c2d2eca2.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/04/14/Centos%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8/" title="Centos设置开机自动启动"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images6d2d2a3e8c424cc4acbf73b458febc7e.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Centos设置开机自动启动</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/03/20/Centos8-stream%E5%AE%89%E8%A3%85VASP-2024-Intel-oneAPI/" title="Centos8 stream安装VASP--2024 Intel oneAPI"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_imagesa9982f7441bd4e07a3b1a26af43457d9.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-20</div><div class="title">Centos8 stream安装VASP--2024 Intel oneAPI</div></div></a></div><div><a href="/2024/03/28/Centos8%E9%9B%86%E7%BE%A4Slurm%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%80%EF%BC%89/" title="Centos8集群Slurm作业管理系统安装（一）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images61ac5e440dac4d97a6624e05044c4074.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-28</div><div class="title">Centos8集群Slurm作业管理系统安装（一）</div></div></a></div><div><a href="/2024/03/28/Centos8%E9%9B%86%E7%BE%A4Slurm%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%89%EF%BC%89/" title="Centos8集群Slurm作业管理系统安装（三）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images96b26df8437c44e899f67d2fee4777ae.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-28</div><div class="title">Centos8集群Slurm作业管理系统安装（三）</div></div></a></div><div><a href="/2024/03/28/Centos8%E9%9B%86%E7%BE%A4Slurm%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Centos8集群Slurm作业管理系统安装（二）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images6a17c887d6054e798c9c88f4ca76f932.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-28</div><div class="title">Centos8集群Slurm作业管理系统安装（二）</div></div></a></div><div><a href="/2024/03/22/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%80%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（一）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images7e4afde0d80946dea5898e2dfa559b81.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-22</div><div class="title">Centos8集群Torque作业管理系统安装（一）</div></div></a></div><div><a href="/2024/03/23/Centos8%E9%9B%86%E7%BE%A4Torque%E4%BD%9C%E4%B8%9A%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%89%EF%BC%89/" title="Centos8集群Torque作业管理系统安装（三）"><img class="cover" src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images40ff251e2a5c4764b2f59513fbdd8c81.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-23</div><div class="title">Centos8集群Torque作业管理系统安装（三）</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">爱吃铜锣烧的哆啦酱</div><div class="author-info__description">好饿好饿好饿，我真的好饿！</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hahArcher1"><i class="fab fa-github"></i><span>订阅我</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/hahArcher1" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到哆啦酱的点心屋！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#shell%E8%AF%AD%E8%A8%80%E7%9A%84%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">shell语言的概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#shell%E7%9A%84%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">shell的背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shell%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">shell的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shell%E7%9A%84%E6%89%A7%E8%A1%8C%E6%96%B9%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text">shell的执行方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shell%E7%9A%84%E6%89%A7%E8%A1%8C%E6%96%B9%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.4.</span> <span class="toc-text">shell的执行方式的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#shell%E8%A7%A3%E9%87%8A%E5%99%A8"><span class="toc-number">1.5.</span> <span class="toc-text">shell解释器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#shell%E7%9A%84%E5%8F%98%E9%87%8F"><span class="toc-number">2.</span> <span class="toc-text">shell的变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">2.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F"><span class="toc-number">2.2.</span> <span class="toc-text">自定义变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E8%BF%B0"><span class="toc-number">2.2.1.</span> <span class="toc-text">简述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F"><span class="toc-number">2.2.2.</span> <span class="toc-text">定义变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">常见错误</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%A4%8D%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F"><span class="toc-number">2.2.3.</span> <span class="toc-text">重复定义变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%8F%98%E9%87%8F"><span class="toc-number">2.2.4.</span> <span class="toc-text">查看变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%8F%98%E9%87%8F"><span class="toc-number">2.2.5.</span> <span class="toc-text">删除变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B"><span class="toc-number">2.2.6.</span> <span class="toc-text">实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E4%BA%92%E5%BC%8F%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F"><span class="toc-number">2.2.7.</span> <span class="toc-text">交互式定义变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%B8%89%E7%A7%8D%E5%BC%95%E5%8F%B7"><span class="toc-number">2.2.8.</span> <span class="toc-text">注意三种引号</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97"><span class="toc-number">2.3.</span> <span class="toc-text">整数运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%951"><span class="toc-number">2.3.1.</span> <span class="toc-text">方法1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%952"><span class="toc-number">2.3.2.</span> <span class="toc-text">方法2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%953"><span class="toc-number">2.3.3.</span> <span class="toc-text">方法3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%954"><span class="toc-number">2.3.4.</span> <span class="toc-text">方法4</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E6%95%B0%E8%BF%90%E7%AE%97"><span class="toc-number">2.4.</span> <span class="toc-text">小数运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">2.5.</span> <span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8D%E7%BD%AE%E5%8F%98%E9%87%8F"><span class="toc-number">2.6.</span> <span class="toc-text">位置变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F"><span class="toc-number">2.7.</span> <span class="toc-text">预定义变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.8.</span> <span class="toc-text">变量的示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#shell%E7%9A%84%E5%88%A4%E6%96%AD%E8%AF%AD%E5%8F%A5"><span class="toc-number">3.</span> <span class="toc-text">shell的判断语句</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#shell%E7%9A%84%E6%9D%A1%E4%BB%B6%E6%B5%8B%E8%AF%95"><span class="toc-number">3.1.</span> <span class="toc-text">shell的条件测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E6%AF%94%E8%BE%83"><span class="toc-number">3.1.1.</span> <span class="toc-text">数值比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%B5%8B%E8%AF%95"><span class="toc-number">3.1.2.</span> <span class="toc-text">文件测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AF%94%E8%BE%83"><span class="toc-number">3.1.3.</span> <span class="toc-text">字符串比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E6%9D%A1%E4%BB%B6%E6%B5%8B%E8%AF%95"><span class="toc-number">3.1.4.</span> <span class="toc-text">多条件测试</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/04/14/Linux%E7%9A%84Shell%E7%BC%96%E7%A8%8B/" title="Linux的Shell编程"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images2c61b17b880611ebb6edd017c2d2eca2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux的Shell编程"/></a><div class="content"><a class="title" href="/2024/04/14/Linux%E7%9A%84Shell%E7%BC%96%E7%A8%8B/" title="Linux的Shell编程">Linux的Shell编程</a><time datetime="2024-04-14T07:01:09.000Z" title="发表于 2024-04-14 15:01:09">2024-04-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/14/Centos%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8/" title="Centos设置开机自动启动"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images6d2d2a3e8c424cc4acbf73b458febc7e.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Centos设置开机自动启动"/></a><div class="content"><a class="title" href="/2024/04/14/Centos%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8/" title="Centos设置开机自动启动">Centos设置开机自动启动</a><time datetime="2024-04-14T05:43:09.000Z" title="发表于 2024-04-14 13:43:09">2024-04-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/13/Linux%E7%9A%84Syetemd%E6%9C%8D%E5%8A%A1/" title="Linux的Syetemd服务"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images0b5f3510de09418d98baaedffe1a7f3b.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux的Syetemd服务"/></a><div class="content"><a class="title" href="/2024/04/13/Linux%E7%9A%84Syetemd%E6%9C%8D%E5%8A%A1/" title="Linux的Syetemd服务">Linux的Syetemd服务</a><time datetime="2024-04-13T08:17:56.000Z" title="发表于 2024-04-13 16:17:56">2024-04-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/13/Centos%E4%B8%AD%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" title="Centos中的环境变量"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images46785555990c4b209fb8495463fa7f69.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Centos中的环境变量"/></a><div class="content"><a class="title" href="/2024/04/13/Centos%E4%B8%AD%E7%9A%84%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" title="Centos中的环境变量">Centos中的环境变量</a><time datetime="2024-04-13T06:11:58.000Z" title="发表于 2024-04-13 14:11:58">2024-04-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/13/Linux%E7%9A%84%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B/" title="Linux的启动过程"><img src="https://raw.githubusercontent.com/hahArcher1/blog_picture/main/cover_images373fac74aed74ddabba1477085316015.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux的启动过程"/></a><div class="content"><a class="title" href="/2024/04/13/Linux%E7%9A%84%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B/" title="Linux的启动过程">Linux的启动过程</a><time datetime="2024-04-13T04:03:58.000Z" title="发表于 2024-04-13 12:03:58">2024-04-13</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By 爱吃铜锣烧的哆啦酱</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来到哆啦酱的点心屋！</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: '1e6e2f537e19cc631780',
+      clientSecret: '247d7fcfdc71454a3a9dba4ae26d333c83219710',
+      repo: 'hahArcher1.github.io',
+      owner: 'hahArcher1',
+      admin: ['hahArcher1'],
+      id: '4c5bc0bfcb457c25ce2c04a9136b5465',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !true) {
+    if (true) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
